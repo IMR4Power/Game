@@ -24,6 +24,15 @@ public class Plateau {
         }
     }
 
+    public Plateau(ParametersPlateau param) {
+        this.nbColonne = param.getNbColonne();
+        this.hauteurColonne = param.getHauteurColonne();
+        this.colonnes = new ArrayList<Colonne>(nbColonne);
+        for (int i = 0; i < nbColonne; i++) {
+            colonnes.add(new Colonne(hauteurColonne));
+        }
+    }
+
     public Plateau(int nbColonne, int hauteurColonne) {
         this.nbColonne = nbColonne;
         this.hauteurColonne = hauteurColonne;
