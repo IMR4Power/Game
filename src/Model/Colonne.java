@@ -32,6 +32,10 @@ public class Colonne {
         return pions.get(index);
     }
 
+    public List<Pion> getPions(){
+        return pions;
+    }
+
     public int getHauteur(){
         return hauteur;
     }

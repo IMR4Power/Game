@@ -3,7 +3,6 @@ package Model;
 import java.util.List;
 import java.util.ArrayList;
 
-
 /**
  * Plateau
  */
@@ -42,15 +41,31 @@ public class Plateau {
         }
     }
 
-	public void JouerPion(Joueur joueur, int colonneIndex) {
+    public void JouerPion(Joueur joueur, int colonneIndex) {
         Pion nouveauPion = new Pion(joueur);
         colonnes.get(colonneIndex).Empile(nouveauPion);
-        VerifVictoire(nouveauPion);
-	}
-
-    public void VerifVictoire(Pion pion){
-
+        VerifVictoire(nouveauPion, colonneIndex);
     }
 
-    
+    public boolean VerifVictoire(Pion pion, int colonneIndex) {
+        int compteurHauteur = 0;
+        Colonne colonne = colonnes.get(colonneIndex);
+        int indexPion = colonne.getPions().indexOf(pion);
+
+        while (colonne.getPion(indexPion++).getColor() == pion.getColor()) {
+            compteurHauteur++;
+        }
+        indexPion = colonne.getPions().indexOf(pion);
+        while (colonne.getPion(indexPion--).getColor() == pion.getColor()) {
+            compteurHauteur++;
+        }
+        if(compteurHauteur >= 4){
+            return true;
+        }
+        
+
+
+        return false;
+    }
+
 }
