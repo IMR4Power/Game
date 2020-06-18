@@ -49,9 +49,14 @@ public class Partie {
         return nbPlayer;
     }
 
+    public void JouerPion(int colonneIndex){
+        this.gameBoard.JouerPion(playerList.get(actualPlayer), colonneIndex);
+        actualPlayer = actualPlayer++ % playerList.size();
+    }
+
     //Modificateur
     //Dégueu mais elle ne sera pas trop utilisée OU a changer
-    private void setActualPlayer(int newActualPlayer){
+    public void setActualPlayer(int newActualPlayer){
         actualPlayer = newActualPlayer;
     }
 
