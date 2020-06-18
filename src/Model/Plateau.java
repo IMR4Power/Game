@@ -12,7 +12,7 @@ public class Plateau {
     private List<Colonne> colonnes;
 
     /**
-     * 
+     * Constructeur
      */
     public Plateau() {
         this.nbColonne = 7;
@@ -41,6 +41,7 @@ public class Plateau {
         }
     }
 
+    //Autres
     public void JouerPion(Joueur joueur, int colonneIndex) {
         Pion nouveauPion = new Pion(joueur);
         colonnes.get(colonneIndex).Empile(nouveauPion);
@@ -62,9 +63,6 @@ public class Plateau {
         if(compteurHauteur >= 4){
             return true;
         }
-        
-
-
         return false;
     }
 

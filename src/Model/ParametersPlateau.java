@@ -9,6 +9,7 @@ public class ParametersPlateau {
     private int hauteurColonne;
 
     /**
+     * Constructeur
      * @param nbColonne
      * @param hauteurColonne
      */
@@ -17,6 +18,7 @@ public class ParametersPlateau {
         this.hauteurColonne = hauteurColonne;
     }
 
+    //Accesseur
 	public int getNbColonne() {
 		return nbColonne;
 	}
@@ -24,9 +26,5 @@ public class ParametersPlateau {
 	public int getHauteurColonne() {
 		return hauteurColonne;
 	}
-
-
-    
-    
 
 }

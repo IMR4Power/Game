@@ -7,6 +7,7 @@ public class Colonne {
     private int hauteur;
     private List<Pion> pions;
 
+    //Constructeur
     public Colonne() {
         this.hauteur = 6;
         pions = new ArrayList<Pion>(6);
@@ -17,14 +18,7 @@ public class Colonne {
         this.pions = new ArrayList<Pion>(hauteur);
     }
 
-    public void Empile(Pion pion) {
-        pions.add(pion);
-    }
-
-    public void Clean() {
-        pions.clear();
-    }
-
+    //Accesseur
     public Pion getPion(int index) {
         if (index >= pions.size()) {
             return null;
@@ -39,4 +33,14 @@ public class Colonne {
     public int getHauteur(){
         return hauteur;
     }
+
+    //Autres
+    public void Empile(Pion pion) {
+        pions.add(pion);
+    }
+
+    public void Clean() {
+        pions.clear();
+    }
+
 }
