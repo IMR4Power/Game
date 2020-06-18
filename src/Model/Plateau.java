@@ -42,7 +42,15 @@ public class Plateau {
         }
     }
 
-    
+	public void JouerPion(Joueur joueur, int colonneIndex) {
+        Pion nouveauPion = new Pion(joueur);
+        colonnes.get(colonneIndex).Empile(nouveauPion);
+        VerifVictoire(nouveauPion);
+	}
+
+    public void VerifVictoire(Pion pion){
+
+    }
 
     
 }
