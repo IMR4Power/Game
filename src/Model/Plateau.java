@@ -48,7 +48,7 @@ public class Plateau {
     }
 
     public boolean VerifVictoire(Pion pion, int colonneIndex) {
-        int compteurHauteur = 0;
+        int compteurHauteur = 1;
         Colonne colonne = colonnes.get(colonneIndex);
         int indexPion = colonne.getPions().indexOf(pion);
 
