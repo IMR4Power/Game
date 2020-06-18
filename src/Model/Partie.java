@@ -54,4 +54,6 @@ public class Partie {
     private void setActualPlayer(int newActualPlayer){
         actualPlayer = newActualPlayer;
     }
+
+    
 }
