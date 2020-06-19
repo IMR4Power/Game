@@ -33,8 +33,13 @@ public class Plateau {
     }
 
     public Plateau(int nbColonne, int hauteurColonne) {
-        this.nbColonne = nbColonne;
-        this.hauteurColonne = hauteurColonne;
+        if (nbColonne >= 4 || hauteurColonne >= 4) {
+            this.nbColonne = nbColonne;
+            this.hauteurColonne = hauteurColonne;
+        } else {
+            this.nbColonne = 4;
+            this.hauteurColonne = 4;
+        }
         this.colonnes = new ArrayList<Colonne>(nbColonne);
         for (int i = 0; i < nbColonne; i++) {
             colonnes.add(new Colonne(hauteurColonne));

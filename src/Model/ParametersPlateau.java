@@ -14,8 +14,14 @@ public class ParametersPlateau {
      * @param hauteurColonne
      */
     public ParametersPlateau(int nbColonne, int hauteurColonne) {
-        this.nbColonne = nbColonne;
-        this.hauteurColonne = hauteurColonne;
+        if(nbColonne >= 4 || hauteurColonne >= 4){
+            this.nbColonne = nbColonne;
+            this.hauteurColonne = hauteurColonne;
+        } else {
+            this.nbColonne = 4;
+            this.hauteurColonne = 4;
+        }
+        
     }
 
     //Accesseur
