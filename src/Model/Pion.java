@@ -3,25 +3,25 @@ package Model;
 import javafx.scene.paint.Color;
 
 public class Pion {
-    private Color color;
+    private Color couleur;
     
     //Constructeur
     public Pion(){
-        this.color = Color.BLUE;
+        this.couleur = Color.BLUE;
     }
     public Pion(Color couleur){
-        this.color = couleur;
+        this.couleur = couleur;
     }
     public Pion(Joueur joueur){
-        this.color = joueur.getColor();
+        this.couleur = joueur.getColor();
     }
 
     //Assesseurs
     /**
      * @return the color
      */
-    public Color getColor() {
-        return color;
+    public Color getCouleur() {
+        return couleur;
     }
 
 }

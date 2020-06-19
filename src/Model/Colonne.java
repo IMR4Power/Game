@@ -20,7 +20,7 @@ public class Colonne {
 
     //Accesseur
     public Pion getPion(int index) {
-        if (index >= pions.size()) {
+        if (index >= pions.size() || index < 0) {
             return null;
         }
         return pions.get(index);
@@ -36,6 +36,9 @@ public class Colonne {
 
     //Autres
     public void Empile(Pion pion) {
+        if(pions.size() == hauteur){
+            return;
+        }
         pions.add(pion);
     }
 
