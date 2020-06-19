@@ -15,7 +15,7 @@ public class Test {
         listJoueurs.add(j1);
         listJoueurs.add(j2);
 
-        Partie p1 = new Partie(listJoueurs); //partie victoire horizontale
+        Partie p1 = new Partie(listJoueurs); // partie victoire horizontale
         p1.JouerPion(1);
         p1.JouerPion(1);
         p1.JouerPion(2);
@@ -24,7 +24,7 @@ public class Test {
         p1.JouerPion(3);
         p1.JouerPion(4);
 
-        Partie p2 = new Partie(listJoueurs); //partie victoire verticale
+        Partie p2 = new Partie(listJoueurs); // partie victoire verticale
         p2.JouerPion(1);
         p2.JouerPion(2);
         p2.JouerPion(1);
@@ -33,32 +33,45 @@ public class Test {
         p2.JouerPion(2);
         p2.JouerPion(1);
 
-        Partie p3 = new Partie(listJoueurs); //partie victoire diag /
-        p3.JouerPion(1); //K
-        p3.JouerPion(2); //D
-        p3.JouerPion(2); //K
-        p3.JouerPion(3); //D
-        p3.JouerPion(3); //K
-        p3.JouerPion(4); //D
-        p3.JouerPion(3); //K
-        p3.JouerPion(6); //D
-        p3.JouerPion(4); //K
-        p3.JouerPion(4); //D
-        p3.JouerPion(4); //K
+        Partie p3 = new Partie(listJoueurs); // partie victoire diag /
+        p3.JouerPion(1); // K
+        p3.JouerPion(2); // D
+        p3.JouerPion(2); // K
+        p3.JouerPion(3); // D
+        p3.JouerPion(3); // K
+        p3.JouerPion(4); // D
+        p3.JouerPion(3); // K
+        p3.JouerPion(6); // D
+        p3.JouerPion(4); // K
+        p3.JouerPion(4); // D
+        p3.JouerPion(4); // K
 
+        Partie p4 = new Partie(listJoueurs); // partie victoire diag \
+        p4.JouerPion(4); // K
+        p4.JouerPion(3); // D
+        p4.JouerPion(3); // K
+        p4.JouerPion(2); // D
+        p4.JouerPion(2); // K
+        p4.JouerPion(1); // D
+        p4.JouerPion(2); // K
+        p4.JouerPion(6); // D
+        p4.JouerPion(1); // K
+        p4.JouerPion(1); // D
+        p4.JouerPion(1); // K
 
-        Partie p4 = new Partie(listJoueurs); //partie victoire diag \
-        p4.JouerPion(4); //K
-        p4.JouerPion(3); //D
-        p4.JouerPion(3); //K
-        p4.JouerPion(2); //D
-        p4.JouerPion(2); //K
-        p4.JouerPion(1); //D
-        p4.JouerPion(2); //K
-        p4.JouerPion(6); //D
-        p4.JouerPion(1); //K
-        p4.JouerPion(1); //D
-        p4.JouerPion(1); //K
+        Partie p5 = new Partie(listJoueurs); // partie égalité 
+        Joueur jActuel = j1;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 3; j++) {
+                p5.JouerPion(jActuel ,i);
+                p5.JouerPion(jActuel, i);
+                if(jActuel == j1){
+                    jActuel = j2;
+                } else {
+                    jActuel = j1;
+                }
+            }
+        }
 
     }
 }

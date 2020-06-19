@@ -149,4 +149,13 @@ public class Plateau {
         return false;
     }
 
+	public boolean IsFull() {
+        for (Colonne colonne : colonnes) {
+            if(colonne.getPions().size() != this.hauteurColonne){
+                return false;
+            }
+        }
+		return true;
+	}
+
 }

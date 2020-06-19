@@ -51,11 +51,22 @@ public class Partie {
         return nbJoueurs;
     }
 
-    public void JouerPion(int colonneIndex) {
-        if (this.plateau.JouerPion(ListJoueurs.get(joueurActuel), colonneIndex)) {
+    public boolean JouerPion(Joueur j, int colonneIndex) {
+        if (this.plateau.JouerPion(j, colonneIndex)) {
             System.out.println(ListJoueurs.get(joueurActuel).getName() + " a gagné la partie");
-        } else {
-            joueurActuel = (joueurActuel + 1) % ListJoueurs.size();
+            return true;
+        } else if (this.plateau.IsFull()) {
+            System.out.println("Egalité");
+            return true;
         }
+        return false;
+    }
+
+    public boolean JouerPion(int colonneIndex) {
+        if (JouerPion(ListJoueurs.get(joueurActuel), colonneIndex)) {
+            return true;
+        }
+        joueurActuel = (joueurActuel + 1) % ListJoueurs.size();
+        return false;
     }
 }
