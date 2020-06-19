@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Plateau
  * ATTENTION
- * Le plateau doit avoir une taille minimale de 4x4 pour qu'il y ai un victoire
+ * Le plateau doit avoir une taille minimale de 4x4 pour qu'il y ai une victoire
  */
 public class Plateau {
     private int nbColonne;
