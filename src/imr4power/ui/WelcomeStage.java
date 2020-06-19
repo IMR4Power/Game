@@ -32,6 +32,11 @@ public class WelcomeStage extends Scene {
 
     private void initBoutons() {
         nouvellePartie = new Button("Nouvelle partie");
+
+        nouvellePartie.setOnMouseClicked(e -> {
+            Power4 test = new Power4(this);
+        });
+
         afficherScores = new Button("Afficher le tableau des scores");
         quitter = new Button("Quitter");
 
