@@ -5,33 +5,25 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class WelcomeStage extends Stage {
+public class WelcomeStage extends Scene {
 
     private Button nouvellePartie, afficherScores, quitter;
     private VBox layout;
+    private MainFrame main;
 
-    public WelcomeStage() {
+    public WelcomeStage(MainFrame m) {
+        super(new VBox());
+
+        main = m;
+
         iniLayout();
 
-        Scene scene = new Scene(layout);
-
         initBoutons();
-
-        this.setTitle("IMR4Power - Puissance 4");
-
-        this.setScene(scene);
-        this.sizeToScene();
-
-        this.setMinWidth(325);
-        this.setMinHeight(577);
-
-        this.setResizable(false);
     }
 
     private void iniLayout() {
-        layout = new VBox();
+        layout = (VBox)this.getRoot();
 
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10);
@@ -43,6 +35,7 @@ public class WelcomeStage extends Stage {
         afficherScores = new Button("Afficher le tableau des scores");
         quitter = new Button("Quitter");
 
+        nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
         quitter.setOnMouseClicked( e -> System.exit(0));
 
         this.layout.getChildren().addAll(nouvellePartie, afficherScores, quitter);
