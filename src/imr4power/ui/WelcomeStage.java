@@ -40,7 +40,7 @@ public class WelcomeStage extends Scene {
         afficherScores = new Button("Afficher le tableau des scores");
         quitter = new Button("Quitter");
 
-        //nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
+        nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
         quitter.setOnMouseClicked( e -> System.exit(0));
 
         this.layout.getChildren().addAll(nouvellePartie, afficherScores, quitter);

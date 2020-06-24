@@ -17,7 +17,7 @@ public class MainFrame extends Stage {
         this.setScene(scene);
         this.sizeToScene();
 
-        this.setResizable(false);
+        this.setResizable(true);
 
         this.show();
     }
