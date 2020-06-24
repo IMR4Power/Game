@@ -34,13 +34,13 @@ public class WelcomeStage extends Scene {
         nouvellePartie = new Button("Nouvelle partie");
 
         nouvellePartie.setOnMouseClicked(e -> {
-            Power4 test = new Power4(this);
+            main.startPower4();
         });
 
         afficherScores = new Button("Afficher le tableau des scores");
         quitter = new Button("Quitter");
 
-        nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
+        //nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
         quitter.setOnMouseClicked( e -> System.exit(0));
 
         this.layout.getChildren().addAll(nouvellePartie, afficherScores, quitter);

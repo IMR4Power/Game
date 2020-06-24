@@ -22,6 +22,10 @@ public class MainFrame extends Stage {
         this.show();
     }
 
+    public void startPower4() {
+        Power4 test = new Power4(this);
+    }
+
     public void openNewGame() {
         try {
             FXMLLoader loader = new FXMLLoader();
