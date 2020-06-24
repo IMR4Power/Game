@@ -15,9 +15,6 @@ public class MainFrame extends Stage {
         Scene scene = new WelcomeStage(this);
 
         this.setScene(scene);
-
-        this.setMinWidth(325);
-        this.setMinHeight(577);
         this.sizeToScene();
 
         this.setResizable(false);
