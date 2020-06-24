@@ -1,64 +1,72 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Partie {
-    private Plateau gameBoard;
-    private ArrayList<Joueur> playerList;
-    private int actualPlayer, nbPlayer;
+    private Plateau plateau;
+    private List<Joueur> ListJoueurs;
+    private int joueurActuel, nbJoueurs;
 
-    //Constructeur
-    public Partie(Plateau gameBoard, int actualPlayer, int nbPlayer){
-        this.gameBoard = gameBoard;
-        this.actualPlayer = actualPlayer;
-        this.nbPlayer = nbPlayer;
-        this.playerList = new ArrayList<Joueur>(nbPlayer);
+    // Constructeur
+    public Partie(Plateau plateau, int joueurActuel, int nbJoueurs) {
+        this.plateau = plateau;
+        this.joueurActuel = joueurActuel;
+        this.nbJoueurs = nbJoueurs;
+        this.ListJoueurs = new ArrayList<Joueur>(nbJoueurs);
     }
 
-    public Partie(Plateau gameBoard, ArrayList<Joueur> playerList, int actualPlayer){
-        this.gameBoard = gameBoard;
-        this.actualPlayer = actualPlayer;
-        this.nbPlayer = playerList.size();
-        this.playerList = playerList;
+    public Partie(Plateau plateau, ArrayList<Joueur> ListJoueurs, int joueurActuel) {
+        this.plateau = plateau;
+        this.joueurActuel = joueurActuel;
+        this.nbJoueurs = ListJoueurs.size();
+        this.ListJoueurs = ListJoueurs;
     }
 
-    public Partie(ArrayList<Joueur> playerList){
-        this.gameBoard = new Plateau();
-        this.actualPlayer = 0;
-        this.nbPlayer = playerList.size();
-        this.playerList = playerList;
+    public Partie(List<Joueur> ListJoueurs) {
+        this.plateau = new Plateau();
+        this.joueurActuel = 0;
+        this.nbJoueurs = ListJoueurs.size();
+        this.ListJoueurs = ListJoueurs;
+        System.out.println("Commencer une nouvelle partie avec " + nbJoueurs + " joueurs");
     }
 
-    public Partie(ArrayList<Joueur> playerList, ParametersPlateau params){
-        this.gameBoard = new Plateau(params);
-        this.actualPlayer = 0;
-        this.nbPlayer = playerList.size();
-        this.playerList = playerList;
+    public Partie(List<Joueur> ListJoueurs, ParametersPlateau params) {
+        this.plateau = new Plateau(params);
+        this.joueurActuel = 0;
+        this.nbJoueurs = ListJoueurs.size();
+        this.ListJoueurs = ListJoueurs;
     }
 
-    //Accesseur
-    public Plateau getGameBoard(){
-        return gameBoard;
+    // Accesseur
+    public Plateau getplateau() {
+        return plateau;
     }
 
-    public int getActualPlayer(){
-        return actualPlayer;
+    public int getjoueurActuel() {
+        return joueurActuel;
     }
 
-    public int getNbPlayer(){
-        return nbPlayer;
+    public int getnbJoueurs() {
+        return nbJoueurs;
     }
 
-    public void JouerPion(int colonneIndex){
-        this.gameBoard.JouerPion(playerList.get(actualPlayer), colonneIndex);
-        actualPlayer = actualPlayer++ % playerList.size();
+    public boolean JouerPion(Joueur j, int colonneIndex) {
+        if (this.plateau.JouerPion(j, colonneIndex)) {
+            System.out.println(ListJoueurs.get(joueurActuel).getName() + " a gagné la partie");
+            return true;
+        } else if (this.plateau.IsFull()) {
+            System.out.println("Egalité");
+            return true;
+        }
+        return false;
     }
 
-    //Modificateur
-    //Dégueu mais elle ne sera pas trop utilisée OU a changer
-    public void setActualPlayer(int newActualPlayer){
-        actualPlayer = newActualPlayer;
+    public boolean JouerPion(int colonneIndex) {
+        if (JouerPion(ListJoueurs.get(joueurActuel), colonneIndex)) {
+            return true;
+        }
+        joueurActuel = (joueurActuel + 1) % ListJoueurs.size();
+        return false;
     }
-
-    
 }

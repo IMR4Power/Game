@@ -45,29 +45,121 @@ public class Plateau {
         }
     }
 
-    //Autres
-    public void JouerPion(Joueur joueur, int colonneIndex) {
+    // Autres
+    public boolean JouerPion(Joueur joueur, int colonneIndex) {
         Pion nouveauPion = new Pion(joueur);
         colonnes.get(colonneIndex).Empile(nouveauPion);
-        VerifVictoire(nouveauPion, colonneIndex);
+        return verifVictoire(nouveauPion, colonneIndex);
     }
 
-    public boolean VerifVictoire(Pion pion, int colonneIndex) {
-        int compteurHauteur = 1;
+    private boolean verifVictoire(Pion pion, int colonneIndex) {
+        int compteurHauteur = 0;
         Colonne colonne = colonnes.get(colonneIndex);
         int indexPion = colonne.getPions().indexOf(pion);
+        int indexDepart = indexPion;
 
-        while (colonne.getPion(indexPion++).getColor() == pion.getColor()) {
-            compteurHauteur++;
+        try {
+            while (colonne.getPion(indexPion++).getCouleur() == pion.getCouleur()) {
+                compteurHauteur++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        indexPion = colonne.getPions().indexOf(pion);
-        while (colonne.getPion(indexPion--).getColor() == pion.getColor()) {
-            compteurHauteur++;
+        indexPion = indexDepart-1;
+        try {
+
+            while (colonne.getPion(indexPion--).getCouleur() == pion.getCouleur()) {
+                compteurHauteur++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
         }
-        if(compteurHauteur >= 4){
+        if (compteurHauteur >= 4) {
             return true;
         }
+
+        indexPion = indexDepart;
+        int compteurLargeur = 0;
+        int colonneDepart = colonneIndex;
+        try {
+
+            while (colonnes.get(colonneIndex++).getPion(indexPion).getCouleur() == pion.getCouleur()) {
+                compteurLargeur++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        colonneIndex = colonneDepart-1;
+        // indexPion = colonne.getPions().indexOf(pion);
+        try {
+
+            while (colonnes.get(colonneIndex--).getPion(indexPion).getCouleur() == pion.getCouleur()) {
+                compteurLargeur++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        if (compteurLargeur >= 4) {
+            return true;
+        }
+
+
+        int compteurDiagGHBD = 0; // diagonnal de en haut à gauche vers en bas à droite
+        colonneIndex = colonneDepart;
+        indexPion = indexDepart;
+        try {
+            while (colonnes.get(colonneIndex--).getPion(indexPion++).getCouleur() == pion.getCouleur()) {
+                compteurDiagGHBD++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        colonneIndex = colonneDepart+1;
+        indexPion = indexDepart-1;
+        try {
+            while (colonnes.get(colonneIndex++).getPion(indexPion--).getCouleur() == pion.getCouleur()) {
+                compteurDiagGHBD++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        if (compteurDiagGHBD >= 4) {
+            return true;
+        }
+
+        int compteurDiagDHBG = 0; // diagonnal de en haut à droite vers en bas à gauche
+        colonneIndex = colonneDepart;
+        indexPion = indexDepart;
+        try {
+            while (colonnes.get(colonneIndex++).getPion(indexPion++).getCouleur() == pion.getCouleur()) {
+                compteurDiagDHBG++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        colonneIndex = colonneDepart-1;
+        indexPion = indexDepart+1;
+        try {
+            while (colonnes.get(colonneIndex--).getPion(indexPion--).getCouleur() == pion.getCouleur()) {
+                compteurDiagDHBG++;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        if (compteurDiagDHBG >= 4) {
+            return true;
+        }
+
         return false;
     }
+
+	public boolean IsFull() {
+        for (Colonne colonne : colonnes) {
+            if(colonne.getPions().size() != this.hauteurColonne){
+                return false;
+            }
+        }
+		return true;
+	}
 
 }
