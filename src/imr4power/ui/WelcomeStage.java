@@ -38,6 +38,8 @@ public class WelcomeStage extends Scene {
         });
 
         afficherScores = new Button("Afficher le tableau des scores");
+        afficherScores.setOnMouseClicked(e -> main.afficheTableauScore());
+
         quitter = new Button("Quitter");
 
         nouvellePartie.setOnMouseClicked(e -> main.openNewGame());

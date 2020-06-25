@@ -16,19 +16,20 @@ public class Power4 extends Scene{
         //Scene scene = main.getScene();
         this.setRoot(root);
 
-        createPlateau(root);
+        createPlateau(root, 5, 3);
 
         main.setScene(this);
         main.sizeToScene();
         //primaryStage.show();
     }
 
-    private void createPlateau(Group root) {
+    //Création du plateau de jeu avec possibilité de modifier le nombe de ligne/colonne
+    private void createPlateau(Group root, int ligne, int colonne) {
         //Rectangle[] rectangles = new Rectangle[42];
         //Circle[] cercles = new Circle[42];
-        int largeur = 20;
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
+        int largeur = 50;
+        for (int i = 0; i < ligne; i++) {
+            for (int j = 0; j < colonne; j++) {
                 Rectangle rect = new Rectangle(((largeur ) * j) + 10, ((largeur ) * i) + 10, largeur, largeur);
                 rect.setFill(Color.BLUE);
                 root.getChildren().add(rect);

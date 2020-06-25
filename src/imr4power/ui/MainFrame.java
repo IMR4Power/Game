@@ -15,7 +15,7 @@ public class MainFrame extends Stage {
         Scene scene = new WelcomeStage(this);
 
         this.setScene(scene);
-        this.sizeToScene();
+        //this.sizeToScene();
 
         this.setResizable(true);
 
@@ -30,6 +30,23 @@ public class MainFrame extends Stage {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("newGameDialog/newGameDialog.fxml"));
+
+            AnchorPane page = loader.load();
+
+            Scene scene = new Scene(page);
+            this.setScene(scene);
+            this.sizeToScene();
+
+            NewGameDialog ctrl = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void afficheTableauScore(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("TableauScore/TableauScoreDialog.fxml"));
 
             AnchorPane page = loader.load();
 
