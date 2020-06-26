@@ -23,7 +23,7 @@ public class MainFrame extends Stage {
     }
 
     public void startPower4() {
-        Power4 test = new Power4(this);
+        Power4 test = new Power4(this, 6, 7);
     }
 
     public void openNewGame() {
