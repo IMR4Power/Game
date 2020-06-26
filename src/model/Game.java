@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class Game {
     }
 
     //Modificateur
-    //Dégueu mais elle ne sera pas trop utilisée OU a changer
+    //Dï¿½gueu mais elle ne sera pas trop utilisï¿½e OU a changer
     public void setActualPlayer(int newActualPlayer){
         actualPlayer = newActualPlayer;
     }

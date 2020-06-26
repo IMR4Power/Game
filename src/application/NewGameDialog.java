@@ -1,8 +1,6 @@
 package application;
 
 import application.Main;
-import Model.Joueur;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import model.Joueur;
 
 /**
  * @author enora

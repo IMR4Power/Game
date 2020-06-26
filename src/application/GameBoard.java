@@ -29,7 +29,7 @@ public class GameBoard extends Scene {
         //primaryStage.show();
     }
 
-    //Création du plateau de jeu avec possibilité de modifier le nombe de ligne/colonne
+    //Crï¿½ation du plateau de jeu avec possibilitï¿½ de modifier le nombe de ligne/colonne
     private void createPlateau(Group root, int ligne, int colonne) {
         //Rectangle[] rectangles = new Rectangle[42];
         //Circle[] cercles = new Circle[42];
