@@ -12,23 +12,23 @@ import java.io.IOException;
  *
  */
 public class MainFrame extends Stage {
+	
 	public MainFrame() {
 		this.setTitle("IMR4Power - Puissance 4");
-
-        Scene scene = new WelcomeStage(this);
-
-        this.setScene(scene);
-        //this.sizeToScene();
-
-        this.setResizable(true);
-
+		this.home();
         this.show();
+	}
+	
+	public void home() {
+		Scene scene = new WelcomeStage(this);
+        this.setScene(scene);
+        this.setResizable(true);		
 	}
 	
 	public void openNewGame() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/NewGameDialog.fxml"));
+            loader.setLocation(Main.class.getResource("../FXML/newGameDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -37,15 +37,17 @@ public class MainFrame extends Stage {
             this.sizeToScene();
 
             NewGameDialog ctrl = loader.getController();
+            ctrl.setMainFrame(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }        
     }
 	
-	public void afficheTableauScore(){
+	public void openScoreBoard(){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/TableauScoreDialog.fxml"));
+            loader.setLocation(Main.class.getResource("../FXML/ScoreBoardDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -53,7 +55,9 @@ public class MainFrame extends Stage {
             this.setScene(scene);
             this.sizeToScene();
 
-            NewGameDialog ctrl = loader.getController();
+            ScoreBoard ctrl = loader.getController();
+            ctrl.setMainFrame(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

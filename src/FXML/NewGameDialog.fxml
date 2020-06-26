@@ -66,5 +66,6 @@
             </padding>
         </VBox>
       <Button layoutX="267.0" layoutY="543.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="297.0" text="Jouer" textAlignment="CENTER" />
+      <Button layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="Retour" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="7.0" fx:id="retour" />
     </children>
 </AnchorPane>

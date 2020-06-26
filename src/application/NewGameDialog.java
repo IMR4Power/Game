@@ -1,9 +1,11 @@
 package application;
 
 import application.Main;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,7 +30,10 @@ public class NewGameDialog {
 	private TableColumn<Joueur, String> nomCol;
 	@FXML
 	private TableColumn<Joueur, String> couleurCol;
-	private Main main;
+	@FXML
+	private Button retour;
+
+	private MainFrame main;
 	
 	//Constructeur
     public NewGameDialog() {
@@ -43,7 +48,7 @@ public class NewGameDialog {
         list.add(new Joueur("Nouveau joueur", "Random"));
     }
     
-    public void setMain(Main m) {
+    public void setMainFrame(MainFrame m) {
         main = m;
     }
     
@@ -60,6 +65,8 @@ public class NewGameDialog {
         couleurCol.setCellFactory(TextFieldTableCell.<Joueur>forTableColumn());
 
         joueurTableView.setItems(list);
+        
+        retour.setOnMouseClicked(e -> main.home());
     }
     
 }
