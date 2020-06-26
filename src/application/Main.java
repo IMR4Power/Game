@@ -1,5 +1,5 @@
-package imr4power.ui;
-
+package application;
+	
 import javafx.application.Application;
 import javafx.stage.Stage;
 

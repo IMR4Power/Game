@@ -1,18 +1,25 @@
-package Model;
+/**
+ * 
+ */
+package model;
 
 import javafx.scene.paint.Color;
 
-public class Pion {
+/**
+ * @author enora
+ *
+ */
+public class Checker {
     private Color color;
     
     //Constructeur
-    public Pion(){
+    public Checker(){
         this.color = Color.BLUE;
     }
-    public Pion(Color couleur){
+    public Checker(Color couleur){
         this.color = couleur;
     }
-    public Pion(Joueur joueur){
+    public Checker(Joueur joueur){
         this.color = joueur.getColor();
     }
 
@@ -23,5 +30,4 @@ public class Pion {
     public Color getColor() {
         return color;
     }
-
 }

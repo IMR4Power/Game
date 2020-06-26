@@ -1,43 +1,51 @@
-package Model;
+/**
+ * 
+ */
+package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Partie {
-    private Plateau gameBoard;
-    private ArrayList<Joueur> playerList;
+/**
+ * @author enora
+ *
+ */
+public class Game {
+    private GameBoard gameBoard;
+    private List<Joueur> playerList;
     private int actualPlayer, nbPlayer;
 
     //Constructeur
-    public Partie(Plateau gameBoard, int actualPlayer, int nbPlayer){
+    public Game(GameBoard gameBoard, int actualPlayer, int nbPlayer){
         this.gameBoard = gameBoard;
         this.actualPlayer = actualPlayer;
         this.nbPlayer = nbPlayer;
         this.playerList = new ArrayList<Joueur>(nbPlayer);
     }
 
-    public Partie(Plateau gameBoard, ArrayList<Joueur> playerList, int actualPlayer){
+    public Game(GameBoard gameBoard, List<Joueur> playerList, int actualPlayer){
         this.gameBoard = gameBoard;
         this.actualPlayer = actualPlayer;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
     }
 
-    public Partie(ArrayList<Joueur> playerList){
-        this.gameBoard = new Plateau();
+    public Game(List<Joueur> playerList){
+        this.gameBoard = new GameBoard();
         this.actualPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
     }
 
-    public Partie(ArrayList<Joueur> playerList, ParametersPlateau params){
-        this.gameBoard = new Plateau(params);
+    public Game(List<Joueur> playerList, BoardParameters params){
+        this.gameBoard = new GameBoard(params);
         this.actualPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
     }
 
     //Accesseur
-    public Plateau getGameBoard(){
+    public GameBoard getGameBoard(){
         return gameBoard;
     }
 
@@ -55,10 +63,8 @@ public class Partie {
     }
 
     //Modificateur
-    //Dégueu mais elle ne sera pas trop utilisée OU a changer
+    //D�gueu mais elle ne sera pas trop utilis�e OU a changer
     public void setActualPlayer(int newActualPlayer){
         actualPlayer = newActualPlayer;
     }
-
-    
 }

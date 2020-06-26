@@ -1,10 +1,13 @@
-package Model;
+/**
+ * 
+ */
+package model;
 
 /**
- * ParametersPlateau
+ * @author enora
+ *
  */
-public class ParametersPlateau {
-
+public class BoardParameters {
     private int nbColonne;
     private int hauteurColonne;
 
@@ -13,7 +16,7 @@ public class ParametersPlateau {
      * @param nbColonne
      * @param hauteurColonne
      */
-    public ParametersPlateau(int nbColonne, int hauteurColonne) {
+    public BoardParameters(int nbColonne, int hauteurColonne) {
         this.nbColonne = nbColonne;
         this.hauteurColonne = hauteurColonne;
     }
@@ -26,5 +29,4 @@ public class ParametersPlateau {
 	public int getHauteurColonne() {
 		return hauteurColonne;
 	}
-
 }
