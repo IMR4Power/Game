@@ -1,0 +1,68 @@
+classDiagram
+%% Ceci est un fichier mermaid. Voici comment parler mermaid:
+%% https://mermaid-js.github.io/mermaid/#/classDiagram
+%% Pour l'utiliser, télécharger l'extension Mermaid Editor sur VSCode ou rendez-vous sur https://mermaid-js.github.io/mermaid-live-editor/
+class BoardParameters{
+    -int nbColonne
+    -int hauteurColonne
+    +BoardParameters(int nbColumn, int columnHeight)
+    +getNbColonne() int
+    +getHauteurColonne() int
+  }
+
+  class Checker{
+    -Color color
+    +Checker()
+    +Checker(Color color)
+    +Checker(Player player)
+    +getColor() Color
+  }
+
+  class Column{
+    -int height
+    -int List<Checker> Checkers
+    +Column()
+    +Column(int height)
+    +getChecker(int index) List<Cheker>
+    +getCheker() int
+    +getHeight() int
+    +stack(Checker cheker) void
+    +clean() void
+  }
+
+  class Game {
+    -GameBoard gameBoard
+    -List<Player> playerList
+    -int actualPlayer
+    -int nbPlayer
+    +Game(GameBoard gameBoard, int acualPlayer, int nbPlayer)
+    +Game(GameBoard gameBoard, List<Player> playerList, int actualPlayer)
+    +Game(List<Player> playerList)
+    +Game(List<Player> playerList, BoardParameters params)
+    +getGameBoard() GameBoard
+    +getActualPlayer() int
+    +getNbPlayer() int
+    +playChecker(int indexColumn)
+  }
+
+  class GameBoard{
+    -int nbColumn
+    -int columnHeight
+    -List<Column> column;
+    +GameBoard()
+    +GameBoard(BoardParameters param)
+    +GameBoard(int nbColumn, int columnHeight)
+    +playChecker(Player player, int indexColumn) void
+    +winVerif(Checker cheker, int indexColumn) boolean
+  }
+
+  class Player{
+    -StringProperty name
+    -Color color
+    +Player(String name, Color color)
+    +Player()
+    +getName() StringProperty
+    +getColor() Color
+    +setName(StringProperty newName) void
+    +setColor(Color newColor) void
+  }
