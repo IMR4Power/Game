@@ -1,19 +1,30 @@
+/**
+ * 
+ */
 package Model;
 
-import javafx.scene.paint.Color;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.paint.Color;	
 
+/**
+ * @author enora
+ *
+ */
 public class Joueur {
-    private String name;
+    private StringProperty name;
     private Color color;
 
     //Constructeur
-    public Joueur (String name ,Color color){
-        this.name = name;
-        this.color = color;
+    public Joueur (String name ,String color){
+        this.name = new SimpleStringProperty(name);
+        this.color = Color.AQUA;
     }
-
-    //Accesseur
-    public String getName(){
+    
+    public Joueur() {}
+    
+	//Accesseur
+    public StringProperty getName(){
         return name;
     }
 
@@ -22,7 +33,7 @@ public class Joueur {
     }
 
     //Modificateur
-    public void setName(String newName){
+    public void setName(StringProperty newName){
         name = newName;
     }
 
