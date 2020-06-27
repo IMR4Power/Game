@@ -31,12 +31,12 @@
                         <Label prefHeight="17.0" prefWidth="124.0" text="Nombres de colonnes" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Spinner fx:id="nbLignes" editable="true" initialValue="6" GridPane.columnIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="6" />
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" />
                             </valueFactory>
                         </Spinner>
-                        <Spinner initialValue="7" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Spinner fx:id="nbColonnes" initialValue="7" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="7" />
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" />
                             </valueFactory>
                         </Spinner>
                     </children>

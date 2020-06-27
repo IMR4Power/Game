@@ -1,7 +1,12 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -12,29 +17,39 @@ import javafx.scene.shape.Rectangle;
  */
 public class GameBoard {
     @FXML
-    private Group gameRoot;
+    private HBox gameRoot;
+    private List<VBox> vBoxes;
 
-
-	public GameBoard() {
+    public GameBoard() {
+        vBoxes = new ArrayList<VBox>();
     }
 
-
-
-    //Création du plateau de jeu avec possibilité de modifier le nombee de ligne/colonne
+    // Création du plateau de jeu avec possibilité de modifier le nombee de
+    // ligne/colonne
     public void createPlateau(int row, int columns) {
         int largeur = 50;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < columns; j++) {
-                Rectangle rect = new Rectangle(((largeur ) * j) + 10, ((largeur ) * i) + 10, largeur, largeur);
-                rect.setFill(Color.BLUE);
-                gameRoot.getChildren().add(rect);
+        for (int i = 0; i < columns; i++) {
+            VBox vbox = new VBox();
+            gameRoot.getChildren().add(vbox);
+            vbox.setSpacing(5);
+            vbox.setPadding(new Insets(5));
+            vbox.setStyle("-fx-background-color: #0000FF"); //fond bleu
+            vBoxes.add(vbox);
+            Double h = gameRoot.heightProperty().doubleValue();
+            Double l = gameRoot.widthProperty().doubleValue();
+            Double hCircle = (h / row);
+            Double lCircle = (l / columns);
+            Double radius = Math.min(lCircle, hCircle) / 2 - 5 ;// 5 -> result of the padding
+            for (int j = 0; j < row; j++) {
                 Circle cercle = new Circle();
-                cercle.setCenterX((rect.getX() + (rect.getWidth() / 2)));
-                cercle.setCenterY((rect.getY() + (rect.getHeight() / 2)));
-                cercle.setRadius(rect.getWidth() /2 - 1);
+                cercle.setRadius(radius);
                 cercle.setFill(Color.WHITE);
-                gameRoot.getChildren().add(cercle);
+                vbox.getChildren().add(cercle);
             }
         }
+        gameRoot.setFillHeight(false);
+    }
+
+    public void initialize() {
     }
 }

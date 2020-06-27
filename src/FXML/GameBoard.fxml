@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<SplitPane dividerPositions="0.65" prefHeight="623.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameBoard">
+<SplitPane dividerPositions="0.8" prefHeight="623.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameBoard">
   <items>
-    <AnchorPane maxHeight="623.0" maxWidth="547.0" minHeight="623.0" minWidth="80.0" prefHeight="623.0" prefWidth="547.0">
+    <AnchorPane maxHeight="623.0" maxWidth="547.0" minHeight="623.0" minWidth="80.0" prefHeight="623.0" prefWidth="739.0">
          <children>
-            <Group fx:id="gameRoot" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <HBox id="gameRoot" fx:id="gameRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="547.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
          </children>
       </AnchorPane>
     <AnchorPane prefHeight="623.0" prefWidth="292.0" />

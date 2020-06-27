@@ -68,7 +68,7 @@ public class MainFrame extends Stage {
         }
     }
 
-    public void startGame(){
+    public void startGame(int row, int columns){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("../FXML/GameBoard.fxml"));
@@ -80,6 +80,7 @@ public class MainFrame extends Stage {
             this.sizeToScene();;
 
             GameBoard ctrl = loader.getController();
+            ctrl.createPlateau(row, columns);
         } catch (IOException e) {
             e.printStackTrace();
         }
