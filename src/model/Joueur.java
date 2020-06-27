@@ -16,15 +16,19 @@ public class Joueur {
     private Color color;
 
     //Constructeur
-    public Joueur (String name ,String color){
+    public Joueur (String name ,Color color){
         this.name = new SimpleStringProperty(name);
-        this.color = Color.AQUA;
+        this.color = color;
     }
     
     public Joueur() {}
     
 	//Accesseur
-    public StringProperty getName(){
+    public String getName(){
+        return name.getValue();
+    }
+
+    public StringProperty getNameProperty(){
         return name;
     }
 
@@ -33,8 +37,8 @@ public class Joueur {
     }
 
     //Modificateur
-    public void setName(StringProperty newName){
-        name = newName;
+    public void setName(String newName){
+        name.setValue(newName);
     }
 
     public void setColor(Color newColor){

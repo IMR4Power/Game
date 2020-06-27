@@ -8,25 +8,25 @@ package model;
  *
  */
 public class BoardParameters {
-    private int nbColonne;
-    private int hauteurColonne;
+    private int nbColumns;
+    private int nbRow;
 
     /**
      * Constructeur
      * @param nbColonne
      * @param hauteurColonne
      */
-    public BoardParameters(int nbColonne, int hauteurColonne) {
-        this.nbColonne = nbColonne;
-        this.hauteurColonne = hauteurColonne;
+    public BoardParameters(int row, int columns) {
+        this.nbColumns = columns;
+        this.nbRow = row;
     }
 
     //Accesseur
 	public int getNbColonne() {
-		return nbColonne;
+		return nbColumns;
 	}
 
 	public int getHauteurColonne() {
-		return hauteurColonne;
+		return nbRow;
 	}
 }
