@@ -63,7 +63,7 @@ public class Game {
     }
 
     //Modificateur
-    //D�gueu mais elle ne sera pas trop utilis�e OU a changer
+    //Dégueu mais elle ne sera pas trop utilisée OU a changer
     public void setActualPlayer(int newActualPlayer){
         actualPlayer = newActualPlayer;
     }

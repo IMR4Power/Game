@@ -4,9 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.BoardParameters;
+import model.Joueur;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author enora
@@ -80,7 +85,11 @@ public class MainFrame extends Stage {
             this.sizeToScene();;
 
             GameBoard ctrl = loader.getController();
-            ctrl.createPlateau(row, columns);
+            BoardParameters params = new BoardParameters(row, columns);
+            List<Joueur> joueurs = new ArrayList<Joueur>();
+            joueurs.add(new Joueur("Test", Color.YELLOW));
+            joueurs.add(new Joueur("Test", Color.RED));
+            ctrl.startGame(joueurs, params);
         } catch (IOException e) {
             e.printStackTrace();
         }

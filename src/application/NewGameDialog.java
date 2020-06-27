@@ -8,6 +8,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Joueur;
 
@@ -37,13 +38,14 @@ public class NewGameDialog {
     public NewGameDialog() {
         list = FXCollections.observableArrayList();
 
-        list.add(new Joueur("Joueur 1", "Rouge"));
-        list.add(new Joueur("Joueur 2", "Jaune"));
+        list.add(new Joueur("Joueur 1", Color.RED));
+        list.add(new Joueur("Joueur 2", Color.YELLOW));
     }
 
     @FXML
     public void addPlayer() {
-        list.add(new Joueur("Nouveau joueur", "Random"));
+        list.add(new Joueur("Nouveau joueur",
+                Color.rgb((int) Math.random() * 255, (int) Math.random() * 255, (int) Math.random() * 255)));
     }
 
     public void setMain(Main m) {
@@ -55,7 +57,7 @@ public class NewGameDialog {
     }
 
     public void initialize() {
-        nomCol.setCellValueFactory(cellData -> cellData.getValue().getName());
+        nomCol.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         /* @TODO la couleur est de type Color et non StringProperty */
         // couleurCol.setCellValueFactory(cellData -> cellData.getValue().getColor());
 

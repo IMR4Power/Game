@@ -6,6 +6,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.VBox;
+
 /**
  * @author enora
  *
@@ -49,7 +51,7 @@ public class GameBoard {
     public void JouerPion(Joueur joueur, int colonneIndex) {
         Checker nouveauPion = new Checker(joueur);
         colonnes.get(colonneIndex).Empile(nouveauPion);
-        VerifVictoire(nouveauPion, colonneIndex);
+        //VerifVictoire(nouveauPion, colonneIndex);
     }
 
     public boolean VerifVictoire(Checker pion, int colonneIndex) {
@@ -69,4 +71,8 @@ public class GameBoard {
         }
         return false;
     }
+
+	public List<Columns> getColumns() {
+		return colonnes;
+	}
 }
