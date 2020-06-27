@@ -87,9 +87,9 @@ public class MainFrame extends Stage {
             GameBoard ctrl = loader.getController();
             BoardParameters params = new BoardParameters(row, columns);
             List<Joueur> joueurs = new ArrayList<Joueur>();
-            joueurs.add(new Joueur("Test", Color.YELLOW));
-            joueurs.add(new Joueur("Test", Color.RED));
-            ctrl.startGame(joueurs, params);
+            joueurs.add(new Joueur("Jaune", Color.YELLOW));
+            joueurs.add(new Joueur("Rouge", Color.RED));
+            ctrl.StartGame(joueurs, params);
         } catch (IOException e) {
             e.printStackTrace();
         }

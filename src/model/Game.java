@@ -57,14 +57,23 @@ public class Game {
         return nbPlayer;
     }
 
-    public void JouerPion(int colonneIndex){
-        this.gameBoard.JouerPion(playerList.get(actualPlayer), colonneIndex);
-        actualPlayer = actualPlayer++ % playerList.size();
+    private boolean jouerPion(Joueur j, int colonneIndex) {
+        if (this.gameBoard.JouerPion(j, colonneIndex)) {
+            System.out.println(playerList.get(actualPlayer).getName() + " a gagné la partie");
+            return true;
+        } else if (this.gameBoard.IsFull()) {
+            System.out.println("Egalité");
+            return true;
+        }
+        return false;
     }
 
-    //Modificateur
-    //Dégueu mais elle ne sera pas trop utilisée OU a changer
-    public void setActualPlayer(int newActualPlayer){
-        actualPlayer = newActualPlayer;
+    public boolean JouerPion(int colonneIndex) {
+        if(this.gameBoard.getColumns().get(colonneIndex).IsFull());
+        if (jouerPion(playerList.get(actualPlayer), colonneIndex)) {
+            return true;
+        }
+        actualPlayer = (actualPlayer + 1) % playerList.size();
+        return false;
     }
 }
