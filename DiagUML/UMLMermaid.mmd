@@ -1,8 +1,5 @@
 classDiagram
-%% Ceci est un fichier mermaid. Voici comment parler mermaid:
-%% https://mermaid-js.github.io/mermaid/#/classDiagram
-%% Pour l'utiliser, télécharger l'extension Mermaid Editor sur VSCode ou rendez-vous sur https://mermaid-js.github.io/mermaid-live-editor/
-class BoardParameters{
+  class BoardParameters{
     -int nbColonne
     -int hauteurColonne
     +BoardParameters(int nbColumn, int columnHeight)
@@ -66,3 +63,9 @@ class BoardParameters{
     +setName(StringProperty newName) void
     +setColor(Color newColor) void
   }
+
+  Game "1" o-- "1" GameBoard
+  Game "0..1" -- "2..4" Player
+  GameBoard "1" o-- "7..10" Column
+  GameBoard -- BoardParameters
+  Column "1" o-- "0..*" Checker
