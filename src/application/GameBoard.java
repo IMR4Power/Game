@@ -1,20 +1,18 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.BoardParameters;
-import model.Checker;
-import model.Columns;
-import model.Game;
-import model.Joueur;
+import model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Dorian
@@ -42,13 +40,14 @@ public class GameBoard {
     private Label labelColor3;
     @FXML
     private Label labelColor4;
+
     private List<Label> joueursLabel;
     private List<Label> colorsLabel;
 
     public GameBoard() {
-        vBoxes = new ArrayList<VBox>();
-        joueursLabel = new ArrayList<Label>();
-        colorsLabel = new ArrayList<Label>();
+        vBoxes = new ArrayList<>();
+        joueursLabel = new ArrayList<>();
+        colorsLabel = new ArrayList<>();
 
         radiusChecker = 0;
     }
@@ -72,11 +71,14 @@ public class GameBoard {
         createPlateau(params);
     }
 
+    public void StartGame(BoardParameters params) {
+        StartGame(params.getPlayers(), params);
+    }
+
     private void configPlayers(List<Joueur> playerList) {
         for (int i = 0; i < playerList.size(); i++) {
             joueursLabel.get(i).setText(playerList.get(i).getName());
-            colorsLabel.get(i).setText(playerList.get(i).getColor().toString());
-            // TODO: Make it color the cell @Kevin?
+            colorsLabel.get(i).setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
         }
     }
 
@@ -91,20 +93,16 @@ public class GameBoard {
             VBox vbox = new VBox();
             gameRoot.getChildren().add(vbox);
             vbox.setOnMouseClicked(e -> clicOnColums(vbox));
-            vbox.setOnMouseEntered(e -> {
-                vbox.setStyle("-fx-background-color: #00AAFF");
-            });
-            vbox.setOnMouseExited(e -> {
-                vbox.setStyle("-fx-background-color: #0000FF");
-            });
+            vbox.setOnMouseEntered(e -> vbox.setStyle("-fx-background-color: #00AAFF"));
+            vbox.setOnMouseExited(e -> vbox.setStyle("-fx-background-color: #0000FF"));
             vbox.setSpacing(5);
             vbox.setPadding(new Insets(5));
             vbox.setStyle("-fx-background-color: #0000FF"); // fond bleu
             vBoxes.add(vbox);
-            Double h = gameRoot.heightProperty().doubleValue();
-            Double l = gameRoot.widthProperty().doubleValue();
-            Double hCircle = (h / row);
-            Double lCircle = (l / columns);
+            double h = gameRoot.heightProperty().doubleValue();
+            double l = gameRoot.widthProperty().doubleValue();
+            double hCircle = (h / row);
+            double lCircle = (l / columns);
             radiusChecker = Math.min(lCircle, hCircle) / 2 - 5;// 5 -> result of the padding
             for (int j = 0; j < row; j++) {
                 Circle cercle = new Circle();

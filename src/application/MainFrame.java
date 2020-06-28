@@ -82,14 +82,32 @@ public class MainFrame extends Stage {
             Scene scene = new Scene(page);
             
             this.setScene(scene);
-            this.sizeToScene();;
+            this.sizeToScene();
 
             GameBoard ctrl = loader.getController();
             BoardParameters params = new BoardParameters(row, columns);
-            List<Joueur> joueurs = new ArrayList<Joueur>();
+            List<Joueur> joueurs = new ArrayList<>();
             joueurs.add(new Joueur("Jaune", Color.YELLOW));
             joueurs.add(new Joueur("Rouge", Color.RED));
             ctrl.StartGame(joueurs, params);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startGame(BoardParameters params) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../FXML/GameBoard.fxml"));
+
+            SplitPane page = loader.load();
+            Scene scene = new Scene(page);
+
+            this.setScene(scene);
+            this.sizeToScene();
+
+            GameBoard ctrl = loader.getController();
+            ctrl.StartGame(params);
         } catch (IOException e) {
             e.printStackTrace();
         }

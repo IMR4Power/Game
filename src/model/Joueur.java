@@ -1,8 +1,7 @@
-/**
- * 
- */
 package model;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.paint.Color;	
@@ -13,12 +12,12 @@ import javafx.scene.paint.Color;
  */
 public class Joueur {
     private StringProperty name;
-    private Color color;
+    private ObjectProperty<Color> color;
 
     //Constructeur
-    public Joueur (String name ,Color color){
+    public Joueur(String name, Color color) {
         this.name = new SimpleStringProperty(name);
-        this.color = color;
+        this.color = new SimpleObjectProperty<>(color);
     }
     
     public Joueur() {}
@@ -28,21 +27,25 @@ public class Joueur {
         return name.getValue();
     }
 
-    public StringProperty getNameProperty(){
+    public StringProperty getNameProperty() {
         return name;
     }
 
-    public Color getColor(){
+    public ObjectProperty<Color> getColorProperty() {
         return color;
     }
 
+    public Color getColor() {
+        return color.getValue();
+    }
+
     //Modificateur
-    public void setName(String newName){
+    public void setName(String newName) {
         name.setValue(newName);
     }
 
-    public void setColor(Color newColor){
-        color = newColor;
+    public void setColor(Color newColor) {
+        color.setValue(newColor);
     }
 
 }

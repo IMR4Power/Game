@@ -1,19 +1,18 @@
 package application;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
+import model.BoardParameters;
 import model.Joueur;
 
 /**
  * @author Kevin
  */
 public class NewGameDialog {
-    private final ObservableList<Joueur> list;
-    private MainFrame mainFrame;
+    //    private final ObservableList<Joueur> list;
+    private final BoardParameters parameters;
 
     @FXML
     private Spinner<Integer> nbLignes;
@@ -30,28 +29,30 @@ public class NewGameDialog {
 
     // Constructeur
     public NewGameDialog() {
-        list = FXCollections.observableArrayList();
+        parameters = new BoardParameters();
+
+        /*list = FXCollections.observableArrayList();
 
         list.add(new Joueur("Joueur 1", Color.RED));
-        list.add(new Joueur("Joueur 2", Color.YELLOW));
+        list.add(new Joueur("Joueur 2", Color.YELLOW));*/
     }
 
     @FXML
     public void addPlayer() {
-        list.add(new Joueur("Nouveau joueur",
+        parameters.getPlayers().add(new Joueur("Nouveau joueur",
                 Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255))));
     }
 
     @FXML
     public void removePlayer() {
-        if (list.size() == 2) {
+        if (parameters.getPlayers().size() == 2) {
             Alert warning = new Alert(Alert.AlertType.WARNING);
             warning.setHeaderText(null);
             warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
             warning.showAndWait();
         } else {
             Joueur j = joueurTableView.getSelectionModel().getSelectedItem();
-            list.remove(j);
+            parameters.getPlayers().remove(j);
         }
     }
 
@@ -62,15 +63,12 @@ public class NewGameDialog {
         nomCol.setCellFactory(TextFieldTableCell.forTableColumn());
         couleurCol.setCellFactory(ColorPickerTableCell::new);
 
-        joueurTableView.setItems(list);
+        joueurTableView.setItems(parameters.getPlayers());
 
-        mainFrame = MainFrame.getMainFrame();
+        parameters.getNbColProperty().bind(nbColonnes.valueProperty());
+        parameters.getNbRowProperty().bind(nbLignes.valueProperty());
 
-        btnJouer.setOnMouseClicked(e -> {
-            int row = nbLignes.getValue();
-            int columns = nbColonnes.getValue();
-            mainFrame.startGame(row, columns);
-        });
+        btnJouer.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
     }
 
 }
