@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -8,163 +5,162 @@ import java.util.List;
 
 /**
  * @author enora
- *
  */
 public class GameBoard {
-	private int nbColonne;
-    private int hauteurColonne;
-    private List<Columns> colonnes;
+    private int nbColumns;
+    private int colHeight;
+    private List<Columns> columns;
 
     /**
      * Constructeur
      */
     public GameBoard() {
-        this.nbColonne = 7;
-        this.hauteurColonne = 6;
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
-        }
+        this(7, 6);
     }
 
     public GameBoard(BoardParameters param) {
-        this.nbColonne = param.getNbColonne();
-        this.hauteurColonne = param.getHauteurColonne();
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
-        }
+        this(param.getNbCol(), param.getNbRow());
     }
 
-    public GameBoard(int nbColonne, int hauteurColonne) {
-        this.nbColonne = nbColonne;
-        this.hauteurColonne = hauteurColonne;
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
+    public GameBoard(int nbColumns, int colHeight) {
+        this.nbColumns = nbColumns;
+        this.colHeight = colHeight;
+
+        this.columns = new ArrayList<>(nbColumns);
+        for (int i = 0; i < nbColumns; i++) {
+            columns.add(new Columns(colHeight));
         }
     }
 
 
-	public List<Columns> getColumns() {
-		return colonnes;
-	}
+    public List<Columns> getColumns() {
+        return columns;
+    }
 
-    
+
     // Autres
-    public boolean JouerPion(Joueur joueur, int colonneIndex) {
-        Checker nouveauPion = new Checker(joueur);
-        colonnes.get(colonneIndex).Empile(nouveauPion);
-        return verifVictoire(nouveauPion, colonneIndex);
+    public boolean playChecker(Player player, int colonneIndex) {
+        Checker newChecker = new Checker(player);
+        columns.get(colonneIndex).push(newChecker);
+        return checkVictory(newChecker, colonneIndex);
     }
 
-    private boolean verifVictoire(Checker checker, int colonneIndex) {
-        int compteurHauteur = 0;
-        Columns colonne = colonnes.get(colonneIndex);
-        int indexChecker = colonne.getCheckers().indexOf(checker);
-        int indexDepart = indexChecker;
+    private boolean checkVictory(Checker checker, int colIdx) {
+        int heightCounter = 0;
+        Columns col = columns.get(colIdx);
+        int indexChecker = col.getCheckers().indexOf(checker);
+        int startIndex = indexChecker;
 
         try {
-            while (colonne.getChecker(indexChecker++).getColor() == checker.getColor()) {
-                compteurHauteur++;
+            while (col.getChecker(indexChecker++).getColor() == checker.getColor()) {
+                heightCounter++;
             }
-        } catch (Exception e) {
-            
-        }
-        indexChecker = indexDepart-1;
-        try {
+        } catch (Exception ignored) {
 
-            while (colonne.getChecker(indexChecker--).getColor() == checker.getColor()) {
-                compteurHauteur++;
-            }
-        } catch (Exception e) {
-            
         }
-        if (compteurHauteur >= 4) {
+
+        indexChecker = startIndex - 1;
+
+        try {
+            while (col.getChecker(indexChecker--).getColor() == checker.getColor()) {
+                heightCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        if (heightCounter >= 4) {
             return true;
         }
 
-        indexChecker = indexDepart;
-        int compteurLargeur = 0;
-        int colonneDepart = colonneIndex;
+        indexChecker = startIndex;
+        int widthCounter = 0;
+        int startCol = colIdx;
+
         try {
 
-            while (colonnes.get(colonneIndex++).getChecker(indexChecker).getColor() == checker.getColor()) {
-                compteurLargeur++;
+            while (columns.get(colIdx++).getChecker(indexChecker).getColor() == checker.getColor()) {
+                widthCounter++;
             }
-        } catch (Exception e) {
-            
+        } catch (Exception ignored) {
+
         }
-        colonneIndex = colonneDepart-1;
+
+        colIdx = startCol - 1;
         // indexChecker = colonne.getCheckers().indexOf(pion);
         try {
 
-            while (colonnes.get(colonneIndex--).getChecker(indexChecker).getColor() == checker.getColor()) {
-                compteurLargeur++;
+            while (columns.get(colIdx--).getChecker(indexChecker).getColor() == checker.getColor()) {
+                widthCounter++;
             }
-        } catch (Exception e) {
-            
+        } catch (Exception ignored) {
+
         }
-        if (compteurLargeur >= 4) {
+
+        if (widthCounter >= 4) {
             return true;
         }
 
 
-        int compteurDiagGHBD = 0; // diagonnal de en haut à gauche vers en bas à droite
-        colonneIndex = colonneDepart;
-        indexChecker = indexDepart;
+        int diagGHBDCounter = 0; // diagonnal de en haut à gauche vers en bas à droite
+        colIdx = startCol;
+        indexChecker = startIndex;
+
         try {
-            while (colonnes.get(colonneIndex--).getChecker(indexChecker++).getColor() == checker.getColor()) {
-                compteurDiagGHBD++;
+            while (columns.get(colIdx--).getChecker(indexChecker++).getColor() == checker.getColor()) {
+                diagGHBDCounter++;
             }
-        } catch (Exception e) {
-            
+        } catch (Exception ignored) {
+
         }
-        colonneIndex = colonneDepart+1;
-        indexChecker = indexDepart-1;
+
+        colIdx = startCol + 1;
+        indexChecker = startIndex - 1;
+
         try {
-            while (colonnes.get(colonneIndex++).getChecker(indexChecker--).getColor() == checker.getColor()) {
-                compteurDiagGHBD++;
+            while (columns.get(colIdx++).getChecker(indexChecker--).getColor() == checker.getColor()) {
+                diagGHBDCounter++;
             }
-        } catch (Exception e) {
-            
+        } catch (Exception ignored) {
+
         }
-        if (compteurDiagGHBD >= 4) {
+
+        if (diagGHBDCounter >= 4) {
             return true;
         }
 
-        int compteurDiagDHBG = 0; // diagonnal de en haut à droite vers en bas à gauche
-        colonneIndex = colonneDepart;
-        indexChecker = indexDepart;
+        int diagDHBGCounter = 0; // diagonnal de en haut à droite vers en bas à gauche
+        colIdx = startCol;
+        indexChecker = startIndex;
+
         try {
-            while (colonnes.get(colonneIndex++).getChecker(indexChecker++).getColor() == checker.getColor()) {
-                compteurDiagDHBG++;
+            while (columns.get(colIdx++).getChecker(indexChecker++).getColor() == checker.getColor()) {
+                diagDHBGCounter++;
             }
-        } catch (Exception e) {
-            
-        }
-        colonneIndex = colonneDepart-1;
-        indexChecker = indexDepart+1;
-        try {
-            while (colonnes.get(colonneIndex--).getChecker(indexChecker--).getColor() == checker.getColor()) {
-                compteurDiagDHBG++;
-            }
-        } catch (Exception e) {
-            
-        }
-        if (compteurDiagDHBG >= 4) {
-            return true;
+        } catch (Exception ignored) {
+
         }
 
-        return false;
+        colIdx = startCol - 1;
+        indexChecker = startIndex + 1;
+
+        try {
+            while (columns.get(colIdx--).getChecker(indexChecker--).getColor() == checker.getColor()) {
+                diagDHBGCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        return diagDHBGCounter >= 4;
     }
 
-	public boolean IsFull() {
-        for (Columns colonne : colonnes) {
-            if(colonne.getCheckers().size() != this.hauteurColonne){
+    public boolean isFull() {
+        for (Columns col : columns) {
+            if (col.getCheckers().size() != this.colHeight) {
                 return false;
             }
         }
-		return true;
-	}
+        return true;
+    }
 }

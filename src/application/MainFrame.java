@@ -7,15 +7,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.BoardParameters;
-import model.Joueur;
+import model.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author enora
- *
+ * @author Kevin
  */
 public class MainFrame extends Stage {
     private static MainFrame singleton;
@@ -27,9 +26,9 @@ public class MainFrame extends Stage {
         Scene scene = new WelcomeStage(this);
 
         this.setScene(scene);
-        //this.sizeToScene();
+        this.sizeToScene();
 
-        this.setResizable(true);
+        this.setResizable(false);
 
         this.show();
 	}
@@ -80,16 +79,16 @@ public class MainFrame extends Stage {
 
             SplitPane page = loader.load();
             Scene scene = new Scene(page);
-            
+
             this.setScene(scene);
             this.sizeToScene();
 
             GameBoard ctrl = loader.getController();
             BoardParameters params = new BoardParameters(row, columns);
-            List<Joueur> joueurs = new ArrayList<>();
-            joueurs.add(new Joueur("Jaune", Color.YELLOW));
-            joueurs.add(new Joueur("Rouge", Color.RED));
-            ctrl.StartGame(joueurs, params);
+            List<Player> players = new ArrayList<>();
+            players.add(new Player("Jaune", Color.YELLOW));
+            players.add(new Player("Rouge", Color.RED));
+            ctrl.startGame(players, params);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +106,7 @@ public class MainFrame extends Stage {
             this.sizeToScene();
 
             GameBoard ctrl = loader.getController();
-            ctrl.StartGame(params);
+            ctrl.startGame(params);
         } catch (IOException e) {
             e.printStackTrace();
         }

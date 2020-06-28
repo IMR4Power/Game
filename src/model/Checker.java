@@ -1,29 +1,28 @@
-/**
- * 
- */
 package model;
 
 import javafx.scene.paint.Color;
 
 /**
  * @author enora
- *
  */
 public class Checker {
-    private Color color;
-    
+    private final Color color;
+
     //Constructeur
-    public Checker(){
-        this.color = Color.BLUE;
+    public Checker() {
+        this(Color.BLUE);
     }
-    public Checker(Color couleur){
-        this.color = couleur;
+
+    public Checker(Player player) {
+        this(player.getColor());
     }
-    public Checker(Joueur joueur){
-        this.color = joueur.getColor();
+
+    public Checker(Color color) {
+        this.color = color;
     }
 
     //Assesseurs
+
     /**
      * @return the color
      */

@@ -5,13 +5,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
 import model.BoardParameters;
-import model.Joueur;
+import model.Player;
 
 /**
  * @author Kevin
  */
 public class NewGameDialog {
-    //    private final ObservableList<Joueur> list;
     private final BoardParameters parameters;
 
     @FXML
@@ -19,28 +18,39 @@ public class NewGameDialog {
     @FXML
     private Spinner<Integer> nbColonnes;
     @FXML
-    private TableView<Joueur> joueurTableView;
+    private TableView<Player> joueurTableView;
     @FXML
-    private TableColumn<Joueur, String> nomCol;
+    private TableColumn<Player, String> nomCol;
     @FXML
-    private TableColumn<Joueur, Color> couleurCol;
+    private TableColumn<Player, Color> couleurCol;
     @FXML
     private Button btnJouer;
+    @FXML
+    private Button addPlayerBtn;
+    @FXML
+    private Button removePlayerBtn;
 
     // Constructeur
     public NewGameDialog() {
         parameters = new BoardParameters();
-
-        /*list = FXCollections.observableArrayList();
-
-        list.add(new Joueur("Joueur 1", Color.RED));
-        list.add(new Joueur("Joueur 2", Color.YELLOW));*/
     }
 
     @FXML
     public void addPlayer() {
-        parameters.getPlayers().add(new Joueur("Nouveau joueur",
-                Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255))));
+        if (parameters.getPlayers().size() == 4) {
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setHeaderText(null);
+            warning.setContentText("Impossible de rajouter un joueur. Il ne peut en avoir que 4 maximum.");
+            warning.showAndWait();
+
+            addPlayerBtn.setDisable(true);
+        } else {
+            parameters.getPlayers().add(new Player("Nouveau joueur",
+                    Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255))));
+
+            if (removePlayerBtn.isDisable())
+                removePlayerBtn.setDisable(false);
+        }
     }
 
     @FXML
@@ -50,9 +60,14 @@ public class NewGameDialog {
             warning.setHeaderText(null);
             warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
             warning.showAndWait();
+
+            removePlayerBtn.setDisable(true);
         } else {
-            Joueur j = joueurTableView.getSelectionModel().getSelectedItem();
+            Player j = joueurTableView.getSelectionModel().getSelectedItem();
             parameters.getPlayers().remove(j);
+
+            if (addPlayerBtn.isDisable())
+                addPlayerBtn.setDisable(false);
         }
     }
 

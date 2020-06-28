@@ -8,22 +8,19 @@ import javafx.scene.paint.Color;
 
 /**
  * @author enora
- *
  */
-public class Joueur {
+public class Player {
     private StringProperty name;
     private ObjectProperty<Color> color;
 
     //Constructeur
-    public Joueur(String name, Color color) {
+    public Player(String name, Color color) {
         this.name = new SimpleStringProperty(name);
         this.color = new SimpleObjectProperty<>(color);
     }
-    
-    public Joueur() {}
-    
-	//Accesseur
-    public String getName(){
+
+    //Accesseur
+    public String getName() {
         return name.getValue();
     }
 

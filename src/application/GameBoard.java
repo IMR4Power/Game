@@ -16,14 +16,16 @@ import java.util.List;
 
 /**
  * @author Dorian
- *
  */
 public class GameBoard {
-    @FXML
-    private HBox gameRoot;
-    private List<VBox> vBoxes;
+    private final List<VBox> vBoxes;
     private double radiusChecker;
     private Game game;
+    private final List<Label> playersLabel;
+    private final List<Label> colorsLabel;
+
+    @FXML
+    private HBox gameRoot;
     @FXML
     private Label labelJ1;
     @FXML
@@ -41,23 +43,19 @@ public class GameBoard {
     @FXML
     private Label labelColor4;
 
-    private List<Label> joueursLabel;
-    private List<Label> colorsLabel;
-
     public GameBoard() {
         vBoxes = new ArrayList<>();
-        joueursLabel = new ArrayList<>();
+        playersLabel = new ArrayList<>();
         colorsLabel = new ArrayList<>();
 
         radiusChecker = 0;
     }
 
     public void initialize() {
-
-        joueursLabel.add(labelJ1);
-        joueursLabel.add(labelJ2);
-        joueursLabel.add(labelJ3);
-        joueursLabel.add(labelJ4);
+        playersLabel.add(labelJ1);
+        playersLabel.add(labelJ2);
+        playersLabel.add(labelJ3);
+        playersLabel.add(labelJ4);
 
         colorsLabel.add(labelColor1);
         colorsLabel.add(labelColor2);
@@ -65,33 +63,34 @@ public class GameBoard {
         colorsLabel.add(labelColor4);
     }
 
-    public void StartGame(List<Joueur> playerList, BoardParameters params) {
+    public void startGame(List<Player> playerList, BoardParameters params) {
         game = new Game(playerList, params);
         configPlayers(playerList);
-        createPlateau(params);
+        createBoard(params);
     }
 
-    public void StartGame(BoardParameters params) {
-        StartGame(params.getPlayers(), params);
+    public void startGame(BoardParameters params) {
+        startGame(params.getPlayers(), params);
     }
 
-    private void configPlayers(List<Joueur> playerList) {
+    private void configPlayers(List<Player> playerList) {
         for (int i = 0; i < playerList.size(); i++) {
-            joueursLabel.get(i).setText(playerList.get(i).getName());
+            playersLabel.get(i).setText(playerList.get(i).getName());
             colorsLabel.get(i).setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
         }
     }
 
-    private void createPlateau(BoardParameters params) {
-        createPlateau(params.getHauteurColonne(), params.getNbColonne());
+    private void createBoard(BoardParameters params) {
+        createBoard(params.getNbRow(), params.getNbCol());
     }
 
     // Création du plateau de jeu avec possibilité de modifier le nombee de
     // ligne/colonne
-    private void createPlateau(int row, int columns) {
+    private void createBoard(int row, int columns) {
         for (int i = 0; i < columns; i++) {
             VBox vbox = new VBox();
             gameRoot.getChildren().add(vbox);
+
             vbox.setOnMouseClicked(e -> clicOnColums(vbox));
             vbox.setOnMouseEntered(e -> vbox.setStyle("-fx-background-color: #00AAFF"));
             vbox.setOnMouseExited(e -> vbox.setStyle("-fx-background-color: #0000FF"));
@@ -99,11 +98,15 @@ public class GameBoard {
             vbox.setPadding(new Insets(5));
             vbox.setStyle("-fx-background-color: #0000FF"); // fond bleu
             vBoxes.add(vbox);
+
             double h = gameRoot.heightProperty().doubleValue();
             double l = gameRoot.widthProperty().doubleValue();
+
             double hCircle = (h / row);
             double lCircle = (l / columns);
+
             radiusChecker = Math.min(lCircle, hCircle) / 2 - 5;// 5 -> result of the padding
+
             for (int j = 0; j < row; j++) {
                 Circle cercle = new Circle();
                 cercle.setRadius(radiusChecker);
@@ -117,7 +120,7 @@ public class GameBoard {
     private void updateColumns(int index, Columns columns) {
         VBox vbox = vBoxes.get(index);
         vbox.getChildren().clear();
-        for (int i = columns.getHauteur()-1; i >= 0; i--) {
+        for (int i = columns.getHeight() - 1; i >= 0; i--) {
             Checker checker = columns.getChecker(i);
             Circle cercle = new Circle();
             cercle.setRadius(radiusChecker);
@@ -132,7 +135,7 @@ public class GameBoard {
 
     private void clicOnColums(VBox vBox) {
         int index = vBoxes.indexOf(vBox);
-        game.JouerPion(index);
+        game.playChecker(index);
         updateColumns(index, game.getGameBoard().getColumns().get(index));
     }
 

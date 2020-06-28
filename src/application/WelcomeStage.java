@@ -1,8 +1,8 @@
 package application;
 
-import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
@@ -13,12 +13,10 @@ import javafx.scene.layout.VBox;
 public class WelcomeStage extends Scene {
     private Button nouvellePartie, afficherScores, quitter;
     private VBox layout;
-    private MainFrame main;
 
     public WelcomeStage(MainFrame m) {
         super(new VBox());
 
-        main = m;
 
         iniLayout();
 
@@ -35,10 +33,10 @@ public class WelcomeStage extends Scene {
 
     private void initBoutons() {
         nouvellePartie = new Button("Nouvelle partie");
-        nouvellePartie.setOnMouseClicked(e -> main.openNewGame());
+        nouvellePartie.setOnMouseClicked(e -> MainFrame.getMainFrame().openNewGame());
 
         afficherScores = new Button("Afficher le tableau des scores");
-        afficherScores.setOnMouseClicked(e -> main.afficheTableauScore());
+        afficherScores.setOnMouseClicked(e -> MainFrame.getMainFrame().afficheTableauScore());
 
         quitter = new Button("Quitter");
         quitter.setOnMouseClicked( e -> System.exit(0));
