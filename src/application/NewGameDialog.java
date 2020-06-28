@@ -3,22 +3,18 @@ package application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import model.Joueur;
 
 /**
  * @author Kevin
- *
  */
 public class NewGameDialog {
-    private Stage stage;
-    private ObservableList<Joueur> list;
+    private final ObservableList<Joueur> list;
+    private MainFrame mainFrame;
+
     @FXML
     private Spinner<Integer> nbLignes;
     @FXML
@@ -28,11 +24,9 @@ public class NewGameDialog {
     @FXML
     private TableColumn<Joueur, String> nomCol;
     @FXML
-    private TableColumn<Joueur, String> couleurCol;
+    private TableColumn<Joueur, Color> couleurCol;
     @FXML
     private Button btnJouer;
-    private Main main;
-    private MainFrame mainFrame;
 
     // Constructeur
     public NewGameDialog() {
@@ -45,27 +39,33 @@ public class NewGameDialog {
     @FXML
     public void addPlayer() {
         list.add(new Joueur("Nouveau joueur",
-                Color.rgb((int) Math.random() * 255, (int) Math.random() * 255, (int) Math.random() * 255)));
+                Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255))));
     }
 
-    public void setMain(Main m) {
-        main = m;
-    }
-
-    public void setStage(Stage s) {
-        stage = s;
+    @FXML
+    public void removePlayer() {
+        if (list.size() == 2) {
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setHeaderText(null);
+            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
+            warning.showAndWait();
+        } else {
+            Joueur j = joueurTableView.getSelectionModel().getSelectedItem();
+            list.remove(j);
+        }
     }
 
     public void initialize() {
         nomCol.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        /* @TODO la couleur est de type Color et non StringProperty */
-        // couleurCol.setCellValueFactory(cellData -> cellData.getValue().getColor());
+        couleurCol.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
 
-        nomCol.setCellFactory(TextFieldTableCell.<Joueur>forTableColumn());
-        couleurCol.setCellFactory(TextFieldTableCell.<Joueur>forTableColumn());
+        nomCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        couleurCol.setCellFactory(ColorPickerTableCell::new);
 
         joueurTableView.setItems(list);
+
         mainFrame = MainFrame.getMainFrame();
+
         btnJouer.setOnMouseClicked(e -> {
             int row = nbLignes.getValue();
             int columns = nbColonnes.getValue();
