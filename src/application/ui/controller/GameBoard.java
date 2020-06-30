@@ -92,7 +92,8 @@ public class GameBoard {
     private void configPlayers(List<Player> playerList) {
         for (int i = 0; i < playerList.size(); i++) {
             playersLabel.get(i).setText(playerList.get(i).getName());
-            colorsLabel.get(i).setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
+            colorsLabel.get(i)
+                    .setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
         }
     }
 
@@ -151,9 +152,12 @@ public class GameBoard {
 
     private void clickOnColumn(VBox vBox) {
         int index = vBoxes.indexOf(vBox);
-        boolean hasEnded = game.playChecker(index);
-        updateColumns(index, game.getGameBoard().getColumns().get(index));
-        labelCurrent.setText(game.getCurrentPlayer().getName());
+        boolean hasEnded = false;
+        if (!game.getGameBoard().getColumns().get(index).isFull()) {
+            hasEnded = game.playChecker(index);
+            updateColumns(index, game.getGameBoard().getColumns().get(index));
+            labelCurrent.setText(game.getCurrentPlayer().getName());
+        }
         if (hasEnded)
             endGame();
     }
@@ -176,8 +180,7 @@ public class GameBoard {
             endGame.setHeaderText("Fin de la partie : " + game.getWinner().getName() + " a gagné(e) !");
         }
 
-        endGame.showAndWait()
-                .filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
+        endGame.showAndWait().filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
                 .ifPresent(response -> {
                     if (response == ButtonType.YES)
                         resetGame();
