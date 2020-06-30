@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="322.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane prefHeight="369.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewGameDialog">
     <children>
         <VBox alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="317.0" prefWidth="505.0"
@@ -62,6 +62,7 @@
                 </AnchorPane>
             </children>
         </VBox>
-        <Button layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="Retour" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="7.0" fx:id="retour" />
+        <Button fx:id="retour" layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0"
+                text="Retour" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="7.0"/>
     </children>
 </AnchorPane>
