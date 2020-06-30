@@ -48,6 +48,8 @@ public class GameBoard {
     private Label labelColor4;
     @FXML
     private Button quit;
+    @FXML
+    private Label labelCurrent;
 
     public GameBoard() {
         vBoxes = new ArrayList<>();
@@ -73,6 +75,7 @@ public class GameBoard {
 
     public void startGame(List<Player> playerList, BoardParameters params) {
         game = new Game(playerList, params);
+        labelCurrent.setText(game.getCurrentPlayer().getName());
         configPlayers(playerList);
         createBoard(params);
     }
@@ -145,7 +148,7 @@ public class GameBoard {
         int index = vBoxes.indexOf(vBox);
         boolean hasEnded = game.playChecker(index);
         updateColumns(index, game.getGameBoard().getColumns().get(index));
-
+        labelCurrent.setText(game.getCurrentPlayer().getName());
         if (hasEnded)
             endGame();
     }
