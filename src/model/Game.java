@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -8,63 +5,94 @@ import java.util.List;
 
 /**
  * @author enora
- *
  */
 public class Game {
     private GameBoard gameBoard;
-    private List<Joueur> playerList;
-    private int actualPlayer, nbPlayer;
+    private List<Player> playerList;
+    private int currentPlayer, nbPlayer;
+    private Player winner;
 
     //Constructeur
-    public Game(GameBoard gameBoard, int actualPlayer, int nbPlayer){
+    public Game(GameBoard gameBoard, int currentPlayer, int nbPlayer) {
         this.gameBoard = gameBoard;
-        this.actualPlayer = actualPlayer;
+        this.currentPlayer = currentPlayer;
         this.nbPlayer = nbPlayer;
-        this.playerList = new ArrayList<Joueur>(nbPlayer);
+        this.playerList = new ArrayList<>(nbPlayer);
+        this.winner = null;
     }
 
-    public Game(GameBoard gameBoard, List<Joueur> playerList, int actualPlayer){
+    public Game(GameBoard gameBoard, List<Player> playerList, int currentPlayer) {
         this.gameBoard = gameBoard;
-        this.actualPlayer = actualPlayer;
+        this.currentPlayer = currentPlayer;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
-    public Game(List<Joueur> playerList){
+    public Game(List<Player> playerList) {
         this.gameBoard = new GameBoard();
-        this.actualPlayer = 0;
+        this.currentPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
-    public Game(List<Joueur> playerList, BoardParameters params){
+    public Game(List<Player> playerList, BoardParameters params) {
         this.gameBoard = new GameBoard(params);
-        this.actualPlayer = 0;
+        this.currentPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
     //Accesseur
-    public GameBoard getGameBoard(){
+    public GameBoard getGameBoard() {
         return gameBoard;
     }
 
-    public int getActualPlayer(){
-        return actualPlayer;
+    public int getCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public int getNbPlayer(){
+    public int getNbPlayer() {
         return nbPlayer;
     }
 
-    public void JouerPion(int colonneIndex){
-        this.gameBoard.JouerPion(playerList.get(actualPlayer), colonneIndex);
-        actualPlayer = actualPlayer++ % playerList.size();
+    public Player getWinner() {
+        return this.winner;
     }
 
-    //Modificateur
-    //D�gueu mais elle ne sera pas trop utilis�e OU a changer
-    public void setActualPlayer(int newActualPlayer){
-        actualPlayer = newActualPlayer;
+    /**
+     * Tells if there is a draw between the players
+     *
+     * @return True if there is a draw, else false
+     */
+    public boolean isADraw() {
+        return this.gameBoard.isFull();
+    }
+
+    public void resetGame() {
+        gameBoard.resetGame();
+    }
+
+    private boolean playChecker(Player j, int colonneIndex) {
+        if (this.gameBoard.playChecker(j, colonneIndex)) {
+            this.winner = playerList.get(currentPlayer);
+            return true;
+        } else return isADraw();
+    }
+
+    /**
+     * Play a checker and tells if the game has ended or not
+     *
+     * @param colonneIndex The index of the column in which the player played its checker
+     * @return True if the game has ended, else false
+     */
+    public boolean playChecker(int colonneIndex) {
+        if (playChecker(playerList.get(currentPlayer), colonneIndex)) {
+            return true;
+        }
+        currentPlayer = (currentPlayer + 1) % playerList.size();
+        return false;
     }
 }
