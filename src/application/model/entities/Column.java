@@ -3,9 +3,6 @@ package application.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author enora
- */
 public class Column {
     private int height;
     private List<Checker> checkers;

@@ -6,9 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.paint.Color;
 
-/**
- * @author enora
- */
 public class Player {
     private StringProperty name;
     private ObjectProperty<Color> color;

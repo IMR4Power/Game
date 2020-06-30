@@ -8,9 +8,6 @@ import application.model.entities.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author enora
- */
 public class GameBoard {
     private int nbColumns;
     private int colHeight;

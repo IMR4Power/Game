@@ -6,9 +6,6 @@ import application.model.entities.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author enora
- */
 public class Game {
     private GameBoard gameBoard;
     private List<Player> playerList;
