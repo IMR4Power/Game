@@ -1,5 +1,11 @@
-package application;
+package application.ui.controller;
 
+import application.model.Game;
+import application.model.entities.BoardParameters;
+import application.model.entities.Checker;
+import application.model.entities.Column;
+import application.model.entities.Player;
+import application.ui.MainFrame;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -13,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
