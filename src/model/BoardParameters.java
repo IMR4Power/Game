@@ -11,18 +11,18 @@ import javafx.scene.paint.Color;
  */
 public class BoardParameters {
     private final IntegerProperty nbColumns;
-    private final IntegerProperty nbRow;
+    private final IntegerProperty nbRows;
     private final ObservableList<Player> players;
 
     /**
      * Constructeur
      *
-     * @param row
+     * @param rows
      * @param columns
      */
-    public BoardParameters(int row, int columns) {
+    public BoardParameters(int rows, int columns) {
         this.nbColumns = new SimpleIntegerProperty(columns);
-        this.nbRow = new SimpleIntegerProperty(row);
+        this.nbRows = new SimpleIntegerProperty(rows);
 
         players = FXCollections.observableArrayList();
 
@@ -39,7 +39,7 @@ public class BoardParameters {
     }
 
     public IntegerProperty getNbRowProperty() {
-        return nbRow;
+        return nbRows;
     }
 
     public ObservableList<Player> getPlayers() {
@@ -51,7 +51,7 @@ public class BoardParameters {
         return nbColumns.getValue();
     }
 
-    public int getNbRow() {
-        return nbRow.getValue();
+    public int getNbRows() {
+        return nbRows.getValue();
     }
 }

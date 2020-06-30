@@ -11,12 +11,10 @@ import javafx.scene.layout.VBox;
  *
  */
 public class WelcomeStage extends Scene {
-    private Button nouvellePartie, afficherScores, quitter;
     private VBox layout;
 
-    public WelcomeStage(MainFrame m) {
+    public WelcomeStage() {
         super(new VBox());
-
 
         iniLayout();
 
@@ -32,15 +30,15 @@ public class WelcomeStage extends Scene {
     }
 
     private void initBoutons() {
-        nouvellePartie = new Button("Nouvelle partie");
-        nouvellePartie.setOnMouseClicked(e -> MainFrame.getMainFrame().openNewGame());
+        Button newGame = new Button("Nouvelle partie");
+        newGame.setOnMouseClicked(e -> MainFrame.getMainFrame().openNewGame());
 
-        afficherScores = new Button("Afficher le tableau des scores");
-        afficherScores.setOnMouseClicked(e -> MainFrame.getMainFrame().afficheTableauScore());
+        Button displayScores = new Button("Afficher le tableau des scores");
+        displayScores.setOnMouseClicked(e -> MainFrame.getMainFrame().afficheTableauScore());
 
-        quitter = new Button("Quitter");
-        quitter.setOnMouseClicked( e -> System.exit(0));
+        Button quit = new Button("Quitter");
+        quit.setOnMouseClicked(e -> System.exit(0));
 
-        this.layout.getChildren().addAll(nouvellePartie, afficherScores, quitter);
+        this.layout.getChildren().addAll(newGame, displayScores, quit);
     }
 }

@@ -23,7 +23,7 @@ public class MainFrame extends Stage {
         singleton = this;
 		this.setTitle("IMR4Power - Puissance 4");
 
-        Scene scene = new WelcomeStage(this);
+        Scene scene = new WelcomeStage();
 
         this.setScene(scene);
         this.sizeToScene();
@@ -41,7 +41,7 @@ public class MainFrame extends Stage {
 	public void openNewGame() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/NewGameDialog.fxml"));
+            loader.setLocation(MainFrame.class.getResource("../FXML/NewGameDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -58,7 +58,7 @@ public class MainFrame extends Stage {
 	public void afficheTableauScore(){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/TableauScoreDialog.fxml"));
+            loader.setLocation(MainFrame.class.getResource("../FXML/TableauScoreDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -72,10 +72,10 @@ public class MainFrame extends Stage {
         }
     }
 
-    public void startGame(int row, int columns){
+    public void startGame(int rows, int columns) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/GameBoard.fxml"));
+            loader.setLocation(MainFrame.class.getResource("../FXML/GameBoard.fxml"));
 
             SplitPane page = loader.load();
             Scene scene = new Scene(page);
@@ -84,7 +84,7 @@ public class MainFrame extends Stage {
             this.sizeToScene();
 
             GameBoard ctrl = loader.getController();
-            BoardParameters params = new BoardParameters(row, columns);
+            BoardParameters params = new BoardParameters(rows, columns);
             List<Player> players = new ArrayList<>();
             players.add(new Player("Jaune", Color.YELLOW));
             players.add(new Player("Rouge", Color.RED));
@@ -97,7 +97,7 @@ public class MainFrame extends Stage {
     public void startGame(BoardParameters params) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../FXML/GameBoard.fxml"));
+            loader.setLocation(MainFrame.class.getResource("../FXML/GameBoard.fxml"));
 
             SplitPane page = loader.load();
             Scene scene = new Scene(page);

@@ -24,22 +24,22 @@
                                GridPane.valignment="CENTER"/>
                         <Label prefHeight="17.0" prefWidth="124.0" text="Nombres de colonnes"
                                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
-                        <Spinner fx:id="nbLignes" editable="true" initialValue="6" GridPane.columnIndex="1">
+                        <Spinner fx:id="nbRows" editable="true" initialValue="6" GridPane.columnIndex="1">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4"/>
                             </valueFactory>
                         </Spinner>
-                        <Spinner fx:id="nbColonnes" initialValue="7" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Spinner fx:id="nbColumns" initialValue="7" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4"/>
                             </valueFactory>
                         </Spinner>
                     </children>
                 </GridPane>
-                <TableView fx:id="joueurTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
+                <TableView fx:id="playerTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="nomCol" prefWidth="251.0" text="Nom du joueur" />
-                        <TableColumn fx:id="couleurCol" minWidth="0.0" prefWidth="253.0" text="Couleur du pion" />
+                        <TableColumn fx:id="nameColumn" prefWidth="251.0" text="Nom du joueur"/>
+                        <TableColumn fx:id="colorColumn" minWidth="0.0" prefWidth="253.0" text="Couleur du pion"/>
                     </columns>
                 </TableView>
                 <AnchorPane prefHeight="37.0" prefWidth="505.0">
@@ -49,7 +49,7 @@
                         <Button fx:id="removePlayerBtn" alignment="BOTTOM_RIGHT" contentDisplay="TOP" layoutX="396.0"
                                 layoutY="6.0" mnemonicParsing="false" onMouseClicked="#removePlayer"
                                 text="Supprimer joueur"/>
-                        <Button fx:id="btnJouer" layoutX="104.0" layoutY="6.0" mnemonicParsing="false" prefHeight="25.0"
+                        <Button fx:id="playBtn" layoutX="104.0" layoutY="6.0" mnemonicParsing="false" prefHeight="25.0"
                                 prefWidth="279.0" text="Jouer" textAlignment="CENTER">
                             <opaqueInsets>
                                 <Insets/>

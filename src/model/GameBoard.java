@@ -19,7 +19,7 @@ public class GameBoard {
     }
 
     public GameBoard(BoardParameters param) {
-        this(param.getNbCol(), param.getNbRow());
+        this(param.getNbCol(), param.getNbRows());
     }
 
     public GameBoard(int nbColumns, int colHeight) {

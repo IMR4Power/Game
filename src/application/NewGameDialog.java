@@ -14,17 +14,17 @@ public class NewGameDialog {
     private final BoardParameters parameters;
 
     @FXML
-    private Spinner<Integer> nbLignes;
+    private Spinner<Integer> nbRows;
     @FXML
-    private Spinner<Integer> nbColonnes;
+    private Spinner<Integer> nbColumns;
     @FXML
-    private TableView<Player> joueurTableView;
+    private TableView<Player> playerTableView;
     @FXML
-    private TableColumn<Player, String> nomCol;
+    private TableColumn<Player, String> nameColumn;
     @FXML
-    private TableColumn<Player, Color> couleurCol;
+    private TableColumn<Player, Color> colorColumn;
     @FXML
-    private Button btnJouer;
+    private Button playBtn;
     @FXML
     private Button addPlayerBtn;
     @FXML
@@ -63,7 +63,7 @@ public class NewGameDialog {
 
             removePlayerBtn.setDisable(true);
         } else {
-            Player j = joueurTableView.getSelectionModel().getSelectedItem();
+            Player j = playerTableView.getSelectionModel().getSelectedItem();
             parameters.getPlayers().remove(j);
 
             if (addPlayerBtn.isDisable())
@@ -72,18 +72,18 @@ public class NewGameDialog {
     }
 
     public void initialize() {
-        nomCol.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        couleurCol.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        colorColumn.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
 
-        nomCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        couleurCol.setCellFactory(ColorPickerTableCell::new);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        colorColumn.setCellFactory(ColorPickerTableCell::new);
 
-        joueurTableView.setItems(parameters.getPlayers());
+        playerTableView.setItems(parameters.getPlayers());
 
-        parameters.getNbColProperty().bind(nbColonnes.valueProperty());
-        parameters.getNbRowProperty().bind(nbLignes.valueProperty());
+        parameters.getNbColProperty().bind(nbColumns.valueProperty());
+        parameters.getNbRowProperty().bind(nbRows.valueProperty());
 
-        btnJouer.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
+        playBtn.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
     }
 
 }

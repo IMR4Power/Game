@@ -81,17 +81,17 @@ public class GameBoard {
     }
 
     private void createBoard(BoardParameters params) {
-        createBoard(params.getNbRow(), params.getNbCol());
+        createBoard(params.getNbRows(), params.getNbCol());
     }
 
     // Création du plateau de jeu avec possibilité de modifier le nombee de
     // ligne/colonne
-    private void createBoard(int row, int columns) {
+    private void createBoard(int rows, int columns) {
         for (int i = 0; i < columns; i++) {
             VBox vbox = new VBox();
             gameRoot.getChildren().add(vbox);
 
-            vbox.setOnMouseClicked(e -> clicOnColums(vbox));
+            vbox.setOnMouseClicked(e -> clickOnColumn(vbox));
             vbox.setOnMouseEntered(e -> vbox.setStyle("-fx-background-color: #00AAFF"));
             vbox.setOnMouseExited(e -> vbox.setStyle("-fx-background-color: #0000FF"));
             vbox.setSpacing(5);
@@ -102,12 +102,12 @@ public class GameBoard {
             double h = gameRoot.heightProperty().doubleValue();
             double l = gameRoot.widthProperty().doubleValue();
 
-            double hCircle = (h / row);
+            double hCircle = (h / rows);
             double lCircle = (l / columns);
 
             radiusChecker = Math.min(lCircle, hCircle) / 2 - 5;// 5 -> result of the padding
 
-            for (int j = 0; j < row; j++) {
+            for (int j = 0; j < rows; j++) {
                 Circle cercle = new Circle();
                 cercle.setRadius(radiusChecker);
                 cercle.setFill(Color.WHITE);
@@ -133,7 +133,7 @@ public class GameBoard {
         }
     }
 
-    private void clicOnColums(VBox vBox) {
+    private void clickOnColumn(VBox vBox) {
         int index = vBoxes.indexOf(vBox);
         game.playChecker(index);
         updateColumns(index, game.getGameBoard().getColumns().get(index));
