@@ -32,7 +32,7 @@ public class MainFrame extends Stage {
         this.setScene(scene);
         this.sizeToScene();
         if(System.getProperty("os.name").equals("Linux")){
-        this.setResizable(true);
+            this.setResizable(true);
         } else {
             this.setResizable(false);
         }
