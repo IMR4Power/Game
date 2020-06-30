@@ -6,67 +6,91 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.stage.Stage;
-import model.Joueur;
+import javafx.scene.paint.Color;
+import model.BoardParameters;
+import model.Player;
 
 /**
- * @author enora
- *
+ * @author Kevin
  */
 public class NewGameDialog {
-	private Stage stage;
-	private ObservableList<Joueur> list;
+    private final BoardParameters parameters;
+
 	@FXML
 	private Spinner<Integer> nbLignes;
 	@FXML
 	private Spinner<Integer> nbColonnes;
 	@FXML
-	private TableView<Joueur> joueurTableView;
+	private TableView<Player> joueurTableView;
 	@FXML
-	private TableColumn<Joueur, String> nomCol;
+	private TableColumn<Player, String> nomCol;
 	@FXML
-	private TableColumn<Joueur, String> couleurCol;
-	@FXML
-	private Button retour;
-
-	private MainFrame main;
+	private TableColumn<Player, String> couleurCol;
+    @FXML
+    private Button playBtn;
+    @FXML
+    private Button addPlayerBtn;
+    @FXML
+    private Button retour;
 	
-	//Constructeur
+	// Constructeur
     public NewGameDialog() {
-        list = FXCollections.observableArrayList();
+        parameters = new BoardParameters();
+    }
 
-        list.add(new Joueur("Joueur 1", "Rouge"));
-        list.add(new Joueur("Joueur 2", "Jaune"));
-    }	
-	
     @FXML
     public void addPlayer() {
-        list.add(new Joueur("Nouveau joueur", "Random"));
+        if (parameters.getPlayers().size() == 4) {
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setHeaderText(null);
+            warning.setContentText("Impossible de rajouter un joueur. Il ne peut en avoir que 4 maximum.");
+            warning.showAndWait();
+
+            addPlayerBtn.setDisable(true);
+        } else {
+            parameters.getPlayers().add(new Player("Nouveau joueur",
+                    Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255))));
+
+            if (removePlayerBtn.isDisable())
+                removePlayerBtn.setDisable(false);
+        }
     }
-    
-    public void setMainFrame(MainFrame m) {
-        main = m;
+
+    @FXML
+    public void removePlayer() {
+        if (parameters.getPlayers().size() == 2) {
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setHeaderText(null);
+            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
+            warning.showAndWait();
+
+            removePlayerBtn.setDisable(true);
+        } else {
+            Player j = playerTableView.getSelectionModel().getSelectedItem();
+            parameters.getPlayers().remove(j);
+
+            if (addPlayerBtn.isDisable())
+                addPlayerBtn.setDisable(false);
+        }
     }
-    
-    public void setStage(Stage s) {
-        stage = s;
-    }
-    
+
     public void initialize() {
-        nomCol.setCellValueFactory(cellData -> cellData.getValue().getName());
-        /* @TODO la couleur est de type Color et non StringProperty */
-        //couleurCol.setCellValueFactory(cellData -> cellData.getValue().getColor());
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        colorColumn.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
 
-        nomCol.setCellFactory(TextFieldTableCell.<Joueur>forTableColumn());
-        couleurCol.setCellFactory(TextFieldTableCell.<Joueur>forTableColumn());
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        colorColumn.setCellFactory(ColorPickerTableCell::new);
 
-        joueurTableView.setItems(list);
-        
-        retour.setOnMouseClicked(e -> main.home());
+        playerTableView.setItems(parameters.getPlayers());
+
+        parameters.getNbColProperty().bind(nbColumns.valueProperty());
+        parameters.getNbRowProperty().bind(nbRows.valueProperty());
+
+        playBtn.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
+
+        retour.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
     }
-    
+
 }

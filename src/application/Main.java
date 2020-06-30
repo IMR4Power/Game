@@ -7,7 +7,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage = new MainFrame();
+        primaryStage = MainFrame.getMainFrame();
         primaryStage.show();
     }
 
