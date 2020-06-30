@@ -1,4 +1,4 @@
-package model.entities;
+package application.model.entities;
 
 import javafx.scene.paint.Color;
 

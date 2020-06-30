@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <SplitPane dividerPositions="0.8" prefHeight="623.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ui.gameBoard.GameBoard">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.gameBoard.GameBoard">
     <items>
         <AnchorPane maxHeight="623.0" maxWidth="547.0" minHeight="623.0" minWidth="80.0" prefHeight="623.0"
                     prefWidth="739.0">

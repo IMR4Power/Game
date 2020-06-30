@@ -1,14 +1,14 @@
-package application.ui;
+package application.controller;
 
-import application.ui.gameBoard.GameBoard;
+import application.controller.gameBoard.GameBoard;
+import application.model.entities.BoardParameters;
+import application.model.entities.Player;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.entities.BoardParameters;
-import model.entities.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class MainFrame extends Stage {
         try {
             FXMLLoader loader = new FXMLLoader();
 
-            loader.setLocation(MainFrame.class.getResource("/application/ui/newGameDialog/NewGameDialog.fxml"));
+            loader.setLocation(MainFrame.class.getResource("/application/view/NewGameDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -65,7 +65,7 @@ public class MainFrame extends Stage {
     public void openScoreBoard() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFrame.class.getResource("/application/ui/scoreBoard/ScoreBoardDialog.fxml"));
+            loader.setLocation(MainFrame.class.getResource("/application/view/ScoreBoardDialog.fxml"));
 
             AnchorPane page = loader.load();
 
@@ -80,7 +80,7 @@ public class MainFrame extends Stage {
     public void startGame(int rows, int columns) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFrame.class.getResource("/application/ui/gameBoard/GameBoard.fxml"));
+            loader.setLocation(MainFrame.class.getResource("/application/view/GameBoard.fxml"));
 
             SplitPane page = loader.load();
             Scene scene = new Scene(page);
@@ -102,7 +102,7 @@ public class MainFrame extends Stage {
     public void startGame(BoardParameters params) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainFrame.class.getResource("/application/ui/gameBoard/GameBoard.fxml"));
+            loader.setLocation(MainFrame.class.getResource("/application/view/GameBoard.fxml"));
 
             SplitPane page = loader.load();
             Scene scene = new Scene(page);

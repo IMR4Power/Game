@@ -1,11 +1,11 @@
-package application.ui.scoreBoard;
+package application.controller.scoreBoard;
 
-import application.ui.MainFrame;
+import application.controller.MainFrame;
+import application.model.entities.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import model.entities.Player;
 
 /**
  * @author enora

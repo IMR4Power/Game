@@ -1,6 +1,11 @@
-package application.ui.gameBoard;
+package application.controller.gameBoard;
 
-import application.ui.MainFrame;
+import application.controller.MainFrame;
+import application.model.Game;
+import application.model.entities.BoardParameters;
+import application.model.entities.Checker;
+import application.model.entities.Column;
+import application.model.entities.Player;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -14,11 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.Game;
-import model.entities.BoardParameters;
-import model.entities.Checker;
-import model.entities.Column;
-import model.entities.Player;
 
 import java.util.ArrayList;
 import java.util.List;

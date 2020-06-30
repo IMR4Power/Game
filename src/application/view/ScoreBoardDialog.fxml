@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="623.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ui.scoreBoard.ScoreBoard">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.scoreBoard.ScoreBoard">
     <children>
         <TableView layoutX="102.0" layoutY="72.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0"
                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">

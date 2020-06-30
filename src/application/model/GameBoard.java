@@ -1,9 +1,9 @@
-package model;
+package application.model;
 
-import model.entities.BoardParameters;
-import model.entities.Checker;
-import model.entities.Column;
-import model.entities.Player;
+import application.model.entities.BoardParameters;
+import application.model.entities.Checker;
+import application.model.entities.Column;
+import application.model.entities.Player;
 
 import java.util.ArrayList;
 import java.util.List;
