@@ -59,7 +59,7 @@
                  </rowConstraints>
                  <children>
                      <Label text="Joueur actuel :" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-                     <Label fx:id="labelActual" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                     <Label fx:id="labelCurrent" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER"
                             GridPane.valignment="CENTER"/>
                  </children>
              </GridPane>

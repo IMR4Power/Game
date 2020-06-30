@@ -50,8 +50,8 @@ public class Game {
         return gameBoard;
     }
 
-    public int getCurrentPlayer() {
-        return currentPlayer;
+    public Player getCurrentPlayer() {
+        return playerList.get(currentPlayer);
     }
 
     public int getNbPlayer() {
