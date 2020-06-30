@@ -2,9 +2,6 @@ package application.model.entities;
 
 import javafx.scene.paint.Color;
 
-/**
- * @author enora
- */
 public class Checker {
     private final Color color;
 

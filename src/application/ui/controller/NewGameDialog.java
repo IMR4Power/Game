@@ -9,9 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
 
-/**
- * @author Kevin
- */
 public class NewGameDialog {
     private final BoardParameters parameters;
 

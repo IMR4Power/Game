@@ -23,9 +23,6 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Dorian
- */
 public class GameBoard {
     private final List<VBox> vBoxes;
     private double radiusChecker;

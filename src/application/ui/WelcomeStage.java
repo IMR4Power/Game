@@ -6,9 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-/**
- * @author enora
- */
 class WelcomeStage extends Scene {
     private VBox layout;
 

@@ -14,9 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Kevin
- */
 public class MainFrame extends Stage {
 
     private static MainFrame singleton;

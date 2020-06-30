@@ -7,7 +7,6 @@ import javafx.scene.paint.Color;
 
 /**
  * @param <T> Type of structure handled by the TableView
- * @author Kevin
  * @see javafx.scene.control.TableView
  */
 public class ColorPickerTableCell<T> extends TableCell<T, Color> {
