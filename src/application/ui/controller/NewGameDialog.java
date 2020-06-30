@@ -62,7 +62,7 @@ public class NewGameDialog {
         if (parameters.getPlayers().size() == 2) {
             Alert warning = new Alert(Alert.AlertType.WARNING);
             warning.setHeaderText(null);
-            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
+            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux joueurs pour jouer.");
             warning.showAndWait();
 
             removePlayerBtn.setDisable(true);
