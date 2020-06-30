@@ -13,8 +13,8 @@ import model.Player;
  * @author enora
  */
 public class ScoreBoard {
-	private MainFrame main;
 	private ObservableList<Player> list;
+
 	@FXML
 	private Button retour;
 
@@ -23,12 +23,8 @@ public class ScoreBoard {
 		list = FXCollections.observableArrayList();
 	}
 
-	public void setMainFrame(MainFrame main) {
-		this.main = main;
-	}
-	
 	public void initialize() {
-		retour.setOnMouseClicked(e -> main.home());
+		retour.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
 	}
 	
 }
