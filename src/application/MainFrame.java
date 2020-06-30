@@ -43,7 +43,7 @@ public class MainFrame extends Stage {
         try {
             FXMLLoader loader = new FXMLLoader();
 
-            loader.setLocation(MainFrame.class.getResource("../FXML/newGameDialog.fxml"));
+            loader.setLocation(MainFrame.class.getResource("../FXML/NewGameDialog.fxml"));
 
             AnchorPane page = loader.load();
 
