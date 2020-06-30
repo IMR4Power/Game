@@ -148,7 +148,7 @@ public class GameBoard {
         }
 
         colIdx = startCol - 1;
-        indexChecker = startIndex + 1;
+        indexChecker = startIndex - 1;
 
         try {
             while (columns.get(colIdx--).getChecker(indexChecker--).getColor() == checker.getColor()) {
