@@ -52,8 +52,6 @@ public class MainFrame extends Stage {
             this.sizeToScene();
 
             NewGameDialog ctrl = loader.getController();
-            ctrl.setMainFrame(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

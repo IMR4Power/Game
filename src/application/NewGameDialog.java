@@ -1,11 +1,6 @@
 package application;
 
-import application.Main;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
@@ -18,24 +13,26 @@ import model.Player;
 public class NewGameDialog {
     private final BoardParameters parameters;
 
-	@FXML
-	private Spinner<Integer> nbLignes;
-	@FXML
-	private Spinner<Integer> nbColonnes;
-	@FXML
-	private TableView<Player> joueurTableView;
-	@FXML
-	private TableColumn<Player, String> nomCol;
-	@FXML
-	private TableColumn<Player, String> couleurCol;
+    @FXML
+    private Spinner<Integer> nbRows;
+    @FXML
+    private Spinner<Integer> nbColumns;
+    @FXML
+    private TableView<Player> playerTableView;
+    @FXML
+    private TableColumn<Player, String> nameColumn;
+    @FXML
+    private TableColumn<Player, Color> colorColumn;
     @FXML
     private Button playBtn;
     @FXML
     private Button addPlayerBtn;
     @FXML
+    private Button removePlayerBtn;
+    @FXML
     private Button retour;
-	
-	// Constructeur
+
+    // Constructeur
     public NewGameDialog() {
         parameters = new BoardParameters();
     }
