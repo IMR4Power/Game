@@ -1,4 +1,4 @@
-package application;
+package application.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,9 +8,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * @author enora
- *
  */
-public class WelcomeStage extends Scene {
+class WelcomeStage extends Scene {
     private VBox layout;
 
     public WelcomeStage() {

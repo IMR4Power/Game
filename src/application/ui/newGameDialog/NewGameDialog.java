@@ -1,11 +1,13 @@
-package application;
+package application.ui.newGameDialog;
 
+import application.ui.MainFrame;
+import application.ui.newGameDialog.colorPickerTableCell.ColorPickerTableCell;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
-import model.BoardParameters;
-import model.Player;
+import model.entities.BoardParameters;
+import model.entities.Player;
 
 /**
  * @author Kevin

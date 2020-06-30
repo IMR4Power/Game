@@ -1,4 +1,4 @@
-package application;
+package application.ui.newGameDialog.colorPickerTableCell;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TableCell;

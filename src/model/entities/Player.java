@@ -1,10 +1,10 @@
-package model;
+package model.entities;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.paint.Color;	
+import javafx.scene.paint.Color;
 
 /**
  * @author enora

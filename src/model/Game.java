@@ -1,5 +1,8 @@
 package model;
 
+import model.entities.BoardParameters;
+import model.entities.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
