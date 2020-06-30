@@ -1,4 +1,4 @@
-package application;
+package application.ui.controller.customTableViewCell;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TableCell;

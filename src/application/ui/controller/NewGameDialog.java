@@ -1,11 +1,13 @@
-package application;
+package application.ui.controller;
 
+import application.model.entities.BoardParameters;
+import application.model.entities.Player;
+import application.ui.MainFrame;
+import application.ui.controller.customTableViewCell.ColorPickerTableCell;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
-import model.BoardParameters;
-import model.Player;
 
 /**
  * @author Kevin
@@ -60,7 +62,7 @@ public class NewGameDialog {
         if (parameters.getPlayers().size() == 2) {
             Alert warning = new Alert(Alert.AlertType.WARNING);
             warning.setHeaderText(null);
-            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux jouers pour jouer.");
+            warning.setContentText("Impossible de supprimer le jour. Il doit y avoir au moins deux joueurs pour jouer.");
             warning.showAndWait();
 
             removePlayerBtn.setDisable(true);

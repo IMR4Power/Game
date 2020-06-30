@@ -1,0 +1,86 @@
+classDiagram
+  class BoardParameters{
+    -IntegerProperty nbColonne
+    -IntegerProperty hauteurColonne
+    -ObservableList<Player> players
+    +BoardParameters(int row, int columns)
+    +BoardParameters()
+    +getNbColProperty() IntegerProperty
+    +getNbRowProperty() IntegerProperty
+    +getPlayers() ObservableList<Player>
+    +getNbCol() int
+    +getNbRows() int
+  }
+
+  class Checker{
+    -Color color
+    +Checker()
+    +Checker(Color color)
+    +Checker(Player player)
+    +getColor() Color
+  }
+
+  class Column{
+    -int height
+    -int List<Checker> Checkers
+    +Column()
+    +Column(int height)
+    +getChecker(int index) List<Checker>
+    +getCheker() Checker
+    +getHeight() int
+    +push(Checker cheker) void
+    +isFull() boolean
+    +clean() void
+  }
+
+  class Game {
+    -GameBoard gameBoard
+    -List<Player> playerList
+    -int currentPlayer
+    -int nbPlayer
+    -Player winner
+    +Game(GameBoard gameBoard, int currentPlayer, int nbPlayer)
+    +Game(GameBoard gameBoard, List<Player> playerList, int currentPlayer)
+    +Game(List<Player> playerList)
+    +Game(List<Player> playerList, BoardParameters params)
+    +getGameBoard() GameBoard
+    +getCurrentPlayer() int
+    +getNbPlayer() int
+    +getWinner() Player
+    +isDraw() boolean
+    +resetGame() void
+    +playChecker(Player j, int colonneIndex)
+    +playChecker(int colonneIndex)
+  }
+
+  class GameBoard{
+    -int nbColumn
+    -int colHeight
+    -List<Column> columns;
+    +GameBoard()
+    +GameBoard(BoardParameters param)
+    +GameBoard(int nbColumn, int colHeight)
+    +getColumns() List<Column>
+    +playChecker(Player player, int colonneIndex) boolean
+    +resetGame() void
+    +checkVictory(Checker checker, int colIdx) boolean
+    +isFull() boolean
+  }
+
+  class Player{
+    -StringProperty name
+    -ObjectProperty<Color> color
+    +Player(String name, Color color)
+    +getName() String
+    +getNameProperty() StringProperty
+    +getColor() Color
+    +getColorProperty() ObjectProperty<Color>
+    +setName(String newName) void
+    +setColor(Color newColor) void
+  }
+
+  Game "1" o-- "1" GameBoard
+  Game "0..1" -- "2..4" Player
+  GameBoard "1" o-- "7..10" Column
+  GameBoard -- BoardParameters
+  Column "1" o-- "0..*" Checker

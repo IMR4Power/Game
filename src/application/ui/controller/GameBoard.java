@@ -1,5 +1,11 @@
-package application;
+package application.ui.controller;
 
+import application.model.Game;
+import application.model.entities.BoardParameters;
+import application.model.entities.Checker;
+import application.model.entities.Column;
+import application.model.entities.Player;
+import application.ui.MainFrame;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -13,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +92,8 @@ public class GameBoard {
     private void configPlayers(List<Player> playerList) {
         for (int i = 0; i < playerList.size(); i++) {
             playersLabel.get(i).setText(playerList.get(i).getName());
-            colorsLabel.get(i).setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
+            colorsLabel.get(i)
+                    .setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
         }
     }
 
@@ -146,9 +152,12 @@ public class GameBoard {
 
     private void clickOnColumn(VBox vBox) {
         int index = vBoxes.indexOf(vBox);
-        boolean hasEnded = game.playChecker(index);
-        updateColumns(index, game.getGameBoard().getColumns().get(index));
-        labelCurrent.setText(game.getCurrentPlayer().getName());
+        boolean hasEnded = false;
+        if (!game.getGameBoard().getColumns().get(index).isFull()) {
+            hasEnded = game.playChecker(index);
+            updateColumns(index, game.getGameBoard().getColumns().get(index));
+            labelCurrent.setText(game.getCurrentPlayer().getName());
+        }
         if (hasEnded)
             endGame();
     }
@@ -171,8 +180,7 @@ public class GameBoard {
             endGame.setHeaderText("Fin de la partie : " + game.getWinner().getName() + " a gagné(e) !");
         }
 
-        endGame.showAndWait()
-                .filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
+        endGame.showAndWait().filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
                 .ifPresent(response -> {
                     if (response == ButtonType.YES)
                         resetGame();
