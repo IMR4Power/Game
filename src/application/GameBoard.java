@@ -2,6 +2,8 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -42,6 +44,8 @@ public class GameBoard {
     private Label labelColor3;
     @FXML
     private Label labelColor4;
+    @FXML
+    private Button quit;
 
     public GameBoard() {
         vBoxes = new ArrayList<>();
@@ -61,6 +65,8 @@ public class GameBoard {
         colorsLabel.add(labelColor2);
         colorsLabel.add(labelColor3);
         colorsLabel.add(labelColor4);
+
+        quit.setOnMouseClicked(e -> System.exit(0));
     }
 
     public void startGame(List<Player> playerList, BoardParameters params) {
@@ -135,8 +141,29 @@ public class GameBoard {
 
     private void clickOnColumn(VBox vBox) {
         int index = vBoxes.indexOf(vBox);
-        game.playChecker(index);
+        boolean hasEnded = game.playChecker(index);
         updateColumns(index, game.getGameBoard().getColumns().get(index));
+
+        if (hasEnded)
+            endGame();
     }
 
+    private void endGame() {
+        for (VBox layout : vBoxes)
+            layout.setOnMouseClicked(null);
+
+        Alert.AlertType type = (game.isADraw()) ? Alert.AlertType.WARNING : Alert.AlertType.INFORMATION;
+
+        Alert endGame = new Alert(type);
+        endGame.setTitle("Résultat de la partie");
+        endGame.setHeaderText(null);
+
+        if (game.isADraw()) {
+            endGame.setContentText("Fin de la partie : Égalité !");
+        } else {
+            endGame.setContentText("Fin de la partie : " + game.getWinner().getName() + " a gagné(e) !");
+        }
+
+        endGame.showAndWait();
+    }
 }

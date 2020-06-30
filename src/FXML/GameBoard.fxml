@@ -63,6 +63,7 @@
                             GridPane.valignment="CENTER"/>
                  </children>
              </GridPane>
+             <Button fx:id="quit" layoutX="199.0" layoutY="584.0" mnemonicParsing="false" text="Quitter le jeu"/>
          </children></AnchorPane>
   </items>
 </SplitPane>

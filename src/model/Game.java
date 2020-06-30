@@ -10,6 +10,7 @@ public class Game {
     private GameBoard gameBoard;
     private List<Player> playerList;
     private int currentPlayer, nbPlayer;
+    private Player winner;
 
     //Constructeur
     public Game(GameBoard gameBoard, int currentPlayer, int nbPlayer) {
@@ -17,6 +18,7 @@ public class Game {
         this.currentPlayer = currentPlayer;
         this.nbPlayer = nbPlayer;
         this.playerList = new ArrayList<>(nbPlayer);
+        this.winner = null;
     }
 
     public Game(GameBoard gameBoard, List<Player> playerList, int currentPlayer) {
@@ -24,6 +26,7 @@ public class Game {
         this.currentPlayer = currentPlayer;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
     public Game(List<Player> playerList) {
@@ -31,6 +34,7 @@ public class Game {
         this.currentPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
     public Game(List<Player> playerList, BoardParameters params) {
@@ -38,6 +42,7 @@ public class Game {
         this.currentPlayer = 0;
         this.nbPlayer = playerList.size();
         this.playerList = playerList;
+        this.winner = null;
     }
 
     //Accesseur
@@ -53,17 +58,37 @@ public class Game {
         return nbPlayer;
     }
 
+    public Player getWinner() {
+        return this.winner;
+    }
+
+    /**
+     * Tells if there is a draw between the players
+     *
+     * @return True if there is a draw, else false
+     */
+    public boolean isADraw() {
+        return this.gameBoard.isFull();
+    }
+
     private boolean playChecker(Player j, int colonneIndex) {
         if (this.gameBoard.playChecker(j, colonneIndex)) {
-            System.out.println(playerList.get(currentPlayer).getName() + " a gagné la partie");
+            this.winner = playerList.get(currentPlayer);
             return true;
-        } else if (this.gameBoard.isFull()) {
+        } else if (isADraw()) {
             System.out.println("Egalité");
             return true;
         }
+
         return false;
     }
 
+    /**
+     * Play a checker and tells if the game has ended or not
+     *
+     * @param colonneIndex The index of the column in which the player played its checker
+     * @return True if the game has ended, else false
+     */
     public boolean playChecker(int colonneIndex) {
         if (playChecker(playerList.get(currentPlayer), colonneIndex)) {
             return true;
