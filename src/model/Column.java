@@ -5,18 +5,17 @@ import java.util.List;
 
 /**
  * @author enora
- *
  */
-public class Columns {
+public class Column {
     private int height;
     private List<Checker> checkers;
 
     // Constructeur
-    public Columns() {
+    public Column() {
         this(6);
     }
 
-    public Columns(int height) {
+    public Column(int height) {
         this.height = height;
         this.checkers = new ArrayList<>(height);
     }
@@ -49,7 +48,7 @@ public class Columns {
         return checkers.size() == height;
     }
 
-    public void Clean() {
+    public void clear() {
         checkers.clear();
     }
 }

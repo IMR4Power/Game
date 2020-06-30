@@ -9,7 +9,7 @@ import java.util.List;
 public class GameBoard {
     private int nbColumns;
     private int colHeight;
-    private List<Columns> columns;
+    private List<Column> columns;
 
     /**
      * Constructeur
@@ -28,12 +28,12 @@ public class GameBoard {
 
         this.columns = new ArrayList<>(nbColumns);
         for (int i = 0; i < nbColumns; i++) {
-            columns.add(new Columns(colHeight));
+            columns.add(new Column(colHeight));
         }
     }
 
 
-    public List<Columns> getColumns() {
+    public List<Column> getColumns() {
         return columns;
     }
 
@@ -45,9 +45,15 @@ public class GameBoard {
         return checkVictory(newChecker, colonneIndex);
     }
 
+    public void resetGame() {
+        for (Column col : columns) {
+            col.clear();
+        }
+    }
+
     private boolean checkVictory(Checker checker, int colIdx) {
         int heightCounter = 0;
-        Columns col = columns.get(colIdx);
+        Column col = columns.get(colIdx);
         int indexChecker = col.getCheckers().indexOf(checker);
         int startIndex = indexChecker;
 
@@ -156,7 +162,7 @@ public class GameBoard {
     }
 
     public boolean isFull() {
-        for (Columns col : columns) {
+        for (Column col : columns) {
             if (col.getCheckers().size() != this.colHeight) {
                 return false;
             }

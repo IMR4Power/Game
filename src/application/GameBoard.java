@@ -2,8 +2,10 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -123,11 +125,11 @@ public class GameBoard {
         gameRoot.setFillHeight(false);
     }
 
-    private void updateColumns(int index, Columns columns) {
+    private void updateColumns(int index, Column column) {
         VBox vbox = vBoxes.get(index);
         vbox.getChildren().clear();
-        for (int i = columns.getHeight() - 1; i >= 0; i--) {
-            Checker checker = columns.getChecker(i);
+        for (int i = column.getHeight() - 1; i >= 0; i--) {
+            Checker checker = column.getChecker(i);
             Circle cercle = new Circle();
             cercle.setRadius(radiusChecker);
             if (checker != null) {
@@ -149,21 +151,47 @@ public class GameBoard {
     }
 
     private void endGame() {
-        for (VBox layout : vBoxes)
-            layout.setOnMouseClicked(null);
+        for (VBox col : vBoxes) {
+            col.setOnMouseEntered(null);
+            col.setOnMouseExited(null);
+            col.setOnMouseClicked(null);
+        }
 
         Alert.AlertType type = (game.isADraw()) ? Alert.AlertType.WARNING : Alert.AlertType.INFORMATION;
 
-        Alert endGame = new Alert(type);
+        Alert endGame = new Alert(type, "Voulez-vous rejouer ?", ButtonType.YES, ButtonType.NO);
         endGame.setTitle("Résultat de la partie");
-        endGame.setHeaderText(null);
 
         if (game.isADraw()) {
-            endGame.setContentText("Fin de la partie : Égalité !");
+            endGame.setHeaderText("Fin de la partie : Égalité !");
         } else {
-            endGame.setContentText("Fin de la partie : " + game.getWinner().getName() + " a gagné(e) !");
+            endGame.setHeaderText("Fin de la partie : " + game.getWinner().getName() + " a gagné(e) !");
         }
 
-        endGame.showAndWait();
+        endGame.showAndWait()
+                .filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
+                .ifPresent(response -> {
+                    if (response == ButtonType.YES)
+                        resetGame();
+                    else
+                        MainFrame.getMainFrame().home();
+                });
+    }
+
+    private void resetGame() {
+        game.resetGame();
+
+        for (VBox col : vBoxes) {
+            col.setOnMouseClicked(e -> clickOnColumn(col));
+            col.setOnMouseEntered(e -> col.setStyle("-fx-background-color: #00AAFF"));
+            col.setOnMouseExited(e -> col.setStyle("-fx-background-color: #0000FF"));
+
+            col.setStyle("-fx-background-color: #0000FF");
+
+            for (Node node : col.getChildren()) {
+                Circle c = (Circle) node;
+                c.setFill(Color.WHITE);
+            }
+        }
     }
 }

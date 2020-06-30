@@ -71,16 +71,15 @@ public class Game {
         return this.gameBoard.isFull();
     }
 
+    public void resetGame() {
+        gameBoard.resetGame();
+    }
+
     private boolean playChecker(Player j, int colonneIndex) {
         if (this.gameBoard.playChecker(j, colonneIndex)) {
             this.winner = playerList.get(currentPlayer);
             return true;
-        } else if (isADraw()) {
-            System.out.println("Egalité");
-            return true;
-        }
-
-        return false;
+        } else return isADraw();
     }
 
     /**
