@@ -69,8 +69,6 @@ public class MainFrame extends Stage {
             this.sizeToScene();
 
             ScoreBoard ctrl = loader.getController();
-            ctrl.setMainFrame(this);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
