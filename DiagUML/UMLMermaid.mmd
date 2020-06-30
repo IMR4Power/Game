@@ -1,10 +1,15 @@
 classDiagram
   class BoardParameters{
-    -int nbColonne
-    -int hauteurColonne
-    +BoardParameters(int nbColumn, int columnHeight)
-    +getNbColonne() int
-    +getHauteurColonne() int
+    -IntegerProperty nbColonne
+    -IntegerProperty hauteurColonne
+    -ObservableList<Player> players
+    +BoardParameters(int row, int columns)
+    +BoardParameters()
+    +getNbColProperty() IntegerProperty
+    +getNbRowProperty() IntegerProperty
+    +getPlayers() ObservableList<Player>
+    +getNbCol() int
+    +getNbRows() int
   }
 
   class Checker{
@@ -20,47 +25,57 @@ classDiagram
     -int List<Checker> Checkers
     +Column()
     +Column(int height)
-    +getChecker(int index) List<Cheker>
-    +getCheker() int
+    +getChecker(int index) List<Checker>
+    +getCheker() Checker
     +getHeight() int
-    +stack(Checker cheker) void
+    +push(Checker cheker) void
+    +isFull() boolean
     +clean() void
   }
 
   class Game {
     -GameBoard gameBoard
     -List<Player> playerList
-    -int actualPlayer
+    -int currentPlayer
     -int nbPlayer
-    +Game(GameBoard gameBoard, int acualPlayer, int nbPlayer)
-    +Game(GameBoard gameBoard, List<Player> playerList, int actualPlayer)
+    -Player winner
+    +Game(GameBoard gameBoard, int currentPlayer, int nbPlayer)
+    +Game(GameBoard gameBoard, List<Player> playerList, int currentPlayer)
     +Game(List<Player> playerList)
     +Game(List<Player> playerList, BoardParameters params)
     +getGameBoard() GameBoard
-    +getActualPlayer() int
+    +getCurrentPlayer() int
     +getNbPlayer() int
-    +playChecker(int indexColumn)
+    +getWinner() Player
+    +isDraw() boolean
+    +resetGame() void
+    +playChecker(Player j, int colonneIndex)
+    +playChecker(int colonneIndex)
   }
 
   class GameBoard{
     -int nbColumn
-    -int columnHeight
-    -List<Column> column;
+    -int colHeight
+    -List<Column> columns;
     +GameBoard()
     +GameBoard(BoardParameters param)
-    +GameBoard(int nbColumn, int columnHeight)
-    +playChecker(Player player, int indexColumn) void
-    +winVerif(Checker cheker, int indexColumn) boolean
+    +GameBoard(int nbColumn, int colHeight)
+    +getColumns() List<Column>
+    +playChecker(Player player, int colonneIndex) boolean
+    +resetGame() void
+    +checkVictory(Checker checker, int colIdx) boolean
+    +isFull() boolean
   }
 
   class Player{
     -StringProperty name
-    -Color color
+    -ObjectProperty<Color> color
     +Player(String name, Color color)
-    +Player()
-    +getName() StringProperty
+    +getName() String
+    +getNameProperty() StringProperty
     +getColor() Color
-    +setName(StringProperty newName) void
+    +getColorProperty() ObjectProperty<Color>
+    +setName(String newName) void
     +setColor(Color newColor) void
   }
 
