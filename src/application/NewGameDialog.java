@@ -30,7 +30,7 @@ public class NewGameDialog {
     @FXML
     private Button removePlayerBtn;
     @FXML
-    private Button retour;
+    private Button back;
 
     // Constructeur
     public NewGameDialog() {
@@ -87,7 +87,7 @@ public class NewGameDialog {
 
         playBtn.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
 
-        retour.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
+        back.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
     }
 
 }

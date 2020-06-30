@@ -1,6 +1,3 @@
-/**
- * 
- */
 package application;
 
 import javafx.collections.FXCollections;
@@ -16,7 +13,7 @@ public class ScoreBoard {
 	private ObservableList<Player> list;
 
 	@FXML
-	private Button retour;
+	private Button back;
 
 	//Constructeur
 	public ScoreBoard() {
@@ -24,7 +21,7 @@ public class ScoreBoard {
 	}
 
 	public void initialize() {
-		retour.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
+		back.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
 	}
 	
 }
