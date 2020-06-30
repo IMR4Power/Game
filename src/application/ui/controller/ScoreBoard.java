@@ -1,7 +1,7 @@
-package application.controller.scoreBoard;
+package application.ui.controller;
 
-import application.controller.MainFrame;
 import application.model.entities.Player;
+import application.ui.MainFrame;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

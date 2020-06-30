@@ -1,8 +1,8 @@
-package application.controller;
+package application.ui;
 
-import application.controller.gameBoard.GameBoard;
 import application.model.entities.BoardParameters;
 import application.model.entities.Player;
+import application.ui.controller.GameBoard;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;

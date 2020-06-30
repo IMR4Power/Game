@@ -1,11 +1,11 @@
-package application.controller.gameBoard;
+package application.ui.controller;
 
-import application.controller.MainFrame;
 import application.model.Game;
 import application.model.entities.BoardParameters;
 import application.model.entities.Checker;
 import application.model.entities.Column;
 import application.model.entities.Player;
+import application.ui.MainFrame;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;

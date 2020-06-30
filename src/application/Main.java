@@ -1,6 +1,6 @@
 package application;
 	
-import application.controller.MainFrame;
+import application.ui.MainFrame;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
