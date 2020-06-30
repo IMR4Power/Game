@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -8,65 +5,162 @@ import java.util.List;
 
 /**
  * @author enora
- *
  */
 public class GameBoard {
-	private int nbColonne;
-    private int hauteurColonne;
-    private List<Columns> colonnes;
+    private int nbColumns;
+    private int colHeight;
+    private List<Columns> columns;
 
     /**
      * Constructeur
      */
     public GameBoard() {
-        this.nbColonne = 7;
-        this.hauteurColonne = 6;
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
-        }
+        this(7, 6);
     }
 
     public GameBoard(BoardParameters param) {
-        this.nbColonne = param.getNbColonne();
-        this.hauteurColonne = param.getHauteurColonne();
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
+        this(param.getNbCol(), param.getNbRows());
+    }
+
+    public GameBoard(int nbColumns, int colHeight) {
+        this.nbColumns = nbColumns;
+        this.colHeight = colHeight;
+
+        this.columns = new ArrayList<>(nbColumns);
+        for (int i = 0; i < nbColumns; i++) {
+            columns.add(new Columns(colHeight));
         }
     }
 
-    public GameBoard(int nbColonne, int hauteurColonne) {
-        this.nbColonne = nbColonne;
-        this.hauteurColonne = hauteurColonne;
-        this.colonnes = new ArrayList<Columns>(nbColonne);
-        for (int i = 0; i < nbColonne; i++) {
-            colonnes.add(new Columns(hauteurColonne));
-        }
+
+    public List<Columns> getColumns() {
+        return columns;
     }
 
-    //Autres
-    public void JouerPion(Joueur joueur, int colonneIndex) {
-        Checker nouveauPion = new Checker(joueur);
-        colonnes.get(colonneIndex).Empile(nouveauPion);
-        VerifVictoire(nouveauPion, colonneIndex);
+
+    // Autres
+    public boolean playChecker(Player player, int colonneIndex) {
+        Checker newChecker = new Checker(player);
+        columns.get(colonneIndex).push(newChecker);
+        return checkVictory(newChecker, colonneIndex);
     }
 
-    public boolean VerifVictoire(Checker pion, int colonneIndex) {
-        int compteurHauteur = 1;
-        Columns colonne = colonnes.get(colonneIndex);
-        int indexPion = colonne.getCheckers().indexOf(pion);
+    private boolean checkVictory(Checker checker, int colIdx) {
+        int heightCounter = 0;
+        Columns col = columns.get(colIdx);
+        int indexChecker = col.getCheckers().indexOf(checker);
+        int startIndex = indexChecker;
 
-        while (colonne.getChecker(indexPion++).getColor() == pion.getColor()) {
-            compteurHauteur++;
+        try {
+            while (col.getChecker(indexChecker++).getColor() == checker.getColor()) {
+                heightCounter++;
+            }
+        } catch (Exception ignored) {
+
         }
-        indexPion = colonne.getCheckers().indexOf(pion);
-        while (colonne.getChecker(indexPion--).getColor() == pion.getColor()) {
-            compteurHauteur++;
+
+        indexChecker = startIndex - 1;
+
+        try {
+            while (col.getChecker(indexChecker--).getColor() == checker.getColor()) {
+                heightCounter++;
+            }
+        } catch (Exception ignored) {
+
         }
-        if(compteurHauteur >= 4){
+
+        if (heightCounter >= 4) {
             return true;
         }
-        return false;
+
+        indexChecker = startIndex;
+        int widthCounter = 0;
+        int startCol = colIdx;
+
+        try {
+
+            while (columns.get(colIdx++).getChecker(indexChecker).getColor() == checker.getColor()) {
+                widthCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        colIdx = startCol - 1;
+        // indexChecker = colonne.getCheckers().indexOf(pion);
+        try {
+
+            while (columns.get(colIdx--).getChecker(indexChecker).getColor() == checker.getColor()) {
+                widthCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        if (widthCounter >= 4) {
+            return true;
+        }
+
+
+        int diagGHBDCounter = 0; // diagonnal de en haut à gauche vers en bas à droite
+        colIdx = startCol;
+        indexChecker = startIndex;
+
+        try {
+            while (columns.get(colIdx--).getChecker(indexChecker++).getColor() == checker.getColor()) {
+                diagGHBDCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        colIdx = startCol + 1;
+        indexChecker = startIndex - 1;
+
+        try {
+            while (columns.get(colIdx++).getChecker(indexChecker--).getColor() == checker.getColor()) {
+                diagGHBDCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        if (diagGHBDCounter >= 4) {
+            return true;
+        }
+
+        int diagDHBGCounter = 0; // diagonnal de en haut à droite vers en bas à gauche
+        colIdx = startCol;
+        indexChecker = startIndex;
+
+        try {
+            while (columns.get(colIdx++).getChecker(indexChecker++).getColor() == checker.getColor()) {
+                diagDHBGCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        colIdx = startCol - 1;
+        indexChecker = startIndex + 1;
+
+        try {
+            while (columns.get(colIdx--).getChecker(indexChecker--).getColor() == checker.getColor()) {
+                diagDHBGCounter++;
+            }
+        } catch (Exception ignored) {
+
+        }
+
+        return diagDHBGCounter >= 4;
+    }
+
+    public boolean isFull() {
+        for (Columns col : columns) {
+            if (col.getCheckers().size() != this.colHeight) {
+                return false;
+            }
+        }
+        return true;
     }
 }

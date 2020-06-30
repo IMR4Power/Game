@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.ArrayList;
@@ -11,42 +8,48 @@ import java.util.List;
  *
  */
 public class Columns {
-    private int hauteur;
-    private List<Checker> Checkers;
+    private int height;
+    private List<Checker> checkers;
 
-    //Constructeur
+    // Constructeur
     public Columns() {
-        this.hauteur = 6;
-        Checkers = new ArrayList<Checker>(6);
+        this(6);
     }
 
-    public Columns(int hauteur) {
-        this.hauteur = hauteur;
-        this.Checkers = new ArrayList<Checker>(hauteur);
+    public Columns(int height) {
+        this.height = height;
+        this.checkers = new ArrayList<>(height);
     }
 
-    //Accesseur
+    // Accesseur
     public Checker getChecker(int index) {
-        if (index >= Checkers.size()) {
+        if (index >= checkers.size()) {
             return null;
         }
-        return Checkers.get(index);
+        return checkers.get(index);
     }
 
-    public List<Checker> getCheckers(){
-        return Checkers;
+    public List<Checker> getCheckers() {
+        return checkers;
     }
 
-    public int getHauteur(){
-        return hauteur;
+    public int getHeight() {
+        return height;
     }
 
-    //Autres
-    public void Empile(Checker Checker) {
-        Checkers.add(Checker);
+    // Autres
+    public void push(Checker checker) {
+        if (isFull()) {
+            return;
+        }
+        checkers.add(checker);
+    }
+
+    public boolean isFull() {
+        return checkers.size() == height;
     }
 
     public void Clean() {
-        Checkers.clear();
+        checkers.clear();
     }
 }
