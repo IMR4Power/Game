@@ -24,14 +24,14 @@
                                GridPane.valignment="CENTER"/>
                         <Label prefHeight="17.0" prefWidth="124.0" text="Nombres de colonnes"
                                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
-                        <Spinner fx:id="nbRows" editable="true" initialValue="6" GridPane.columnIndex="1">
+                        <Spinner fx:id="nbRows" editable="true" GridPane.columnIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4"/>
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" initialValue="6"/>
                             </valueFactory>
                         </Spinner>
-                        <Spinner fx:id="nbColumns" initialValue="7" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Spinner fx:id="nbColumns" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4"/>
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" initialValue="7"/>
                             </valueFactory>
                         </Spinner>
                     </children>
