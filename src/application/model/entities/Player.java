@@ -1,19 +1,18 @@
 package application.model.entities;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.scene.paint.Color;
 
 public class Player {
-    private StringProperty name;
-    private ObjectProperty<Color> color;
+    private final StringProperty name;
+    private final ObjectProperty<Color> color;
+    private final IntegerProperty currentScore;
 
     //Constructeur
     public Player(String name, Color color) {
         this.name = new SimpleStringProperty(name);
         this.color = new SimpleObjectProperty<>(color);
+        this.currentScore = new SimpleIntegerProperty(0);
     }
 
     //Accesseur
@@ -40,6 +39,18 @@ public class Player {
 
     public void setColor(Color newColor) {
         color.setValue(newColor);
+    }
+
+    public IntegerProperty getScoreProperty() {
+        return this.currentScore;
+    }
+
+    public int getCurrentScore() {
+        return currentScore.get();
+    }
+
+    public void wonAGame() {
+        this.currentScore.set(this.currentScore.get() + 1);
     }
 
 }

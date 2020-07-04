@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private GameBoard gameBoard;
-    private List<Player> playerList;
-    private int currentPlayer, nbPlayer;
+    private final GameBoard gameBoard;
+    private final List<Player> playerList;
+    private final int nbPlayer;
+    private int currentPlayer;
     private Player winner;
 
     //Constructeur
@@ -77,7 +78,8 @@ public class Game {
 
     private boolean playChecker(Player j, int colonneIndex) {
         if (this.gameBoard.playChecker(j, colonneIndex)) {
-            this.winner = playerList.get(currentPlayer);
+            this.winner = j;
+            this.winner.wonAGame();
             return true;
         } else return isADraw();
     }

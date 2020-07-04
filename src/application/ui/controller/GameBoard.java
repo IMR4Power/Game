@@ -29,9 +29,15 @@ public class GameBoard {
     private Game game;
     private final List<Label> playersLabel;
     private final List<Label> colorsLabel;
+    private final List<Label> scoreLabel;
 
     @FXML
     private HBox gameRoot;
+    @FXML
+    private Button quit;
+    @FXML
+    private Label labelCurrent;
+
     @FXML
     private Label labelJ1;
     @FXML
@@ -40,6 +46,7 @@ public class GameBoard {
     private Label labelJ3;
     @FXML
     private Label labelJ4;
+
     @FXML
     private Label labelColor1;
     @FXML
@@ -48,15 +55,21 @@ public class GameBoard {
     private Label labelColor3;
     @FXML
     private Label labelColor4;
+
     @FXML
-    private Button quit;
+    private Label labelScore1;
     @FXML
-    private Label labelCurrent;
+    private Label labelScore2;
+    @FXML
+    private Label labelScore3;
+    @FXML
+    private Label labelScore4;
 
     public GameBoard() {
         vBoxes = new ArrayList<>();
         playersLabel = new ArrayList<>();
         colorsLabel = new ArrayList<>();
+        scoreLabel = new ArrayList<>();
 
         radiusChecker = 0;
     }
@@ -71,6 +84,11 @@ public class GameBoard {
         colorsLabel.add(labelColor2);
         colorsLabel.add(labelColor3);
         colorsLabel.add(labelColor4);
+
+        scoreLabel.add(labelScore1);
+        scoreLabel.add(labelScore2);
+        scoreLabel.add(labelScore3);
+        scoreLabel.add(labelScore4);
 
         quit.setOnMouseClicked(e -> System.exit(0));
     }
@@ -91,6 +109,7 @@ public class GameBoard {
             playersLabel.get(i).setText(playerList.get(i).getName());
             colorsLabel.get(i)
                     .setBackground(new Background(new BackgroundFill(playerList.get(i).getColor(), null, null)));
+            scoreLabel.get(i).textProperty().bind(playerList.get(i).getScoreProperty().asString());
         }
     }
 

@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="369.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/11.0.1"
+<AnchorPane prefHeight="369.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ui.controller.NewGameDialog">
     <children>
         <VBox alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="317.0" prefWidth="505.0"
@@ -26,12 +26,12 @@
                                GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
                         <Spinner fx:id="nbRows" editable="true" GridPane.columnIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" initialValue="6"/>
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="6" max="10" min="4"/>
                             </valueFactory>
                         </Spinner>
-                        <Spinner fx:id="nbColumns" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Spinner fx:id="nbColumns" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <valueFactory>
-                                <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="4" initialValue="7"/>
+                                <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="7" max="10" min="4"/>
                             </valueFactory>
                         </Spinner>
                     </children>

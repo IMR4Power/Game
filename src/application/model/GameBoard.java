@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameBoard {
-    private int nbColumns;
-    private int colHeight;
-    private List<Column> columns;
+    private final int nbColumns;
+    private final int colHeight;
+    private final List<Column> columns;
 
     /**
      * Constructeur
