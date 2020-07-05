@@ -14,7 +14,7 @@ class WelcomeStage extends Scene {
 
         iniLayout();
 
-        initBoutons();
+        initButtons();
     }
 
     private void iniLayout() {
@@ -25,7 +25,7 @@ class WelcomeStage extends Scene {
         layout.setPadding(new Insets(10.0));
     }
 
-    private void initBoutons() {
+    private void initButtons() {
         Button newGame = new Button("Nouvelle partie");
         newGame.setOnMouseClicked(e -> MainFrame.getMainFrame().openNewGame());
 

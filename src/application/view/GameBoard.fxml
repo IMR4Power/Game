@@ -8,9 +8,11 @@
         <AnchorPane maxHeight="623.0" maxWidth="547.0" minHeight="623.0" minWidth="80.0" prefHeight="623.0"
                     prefWidth="739.0">
             <children>
-                <HBox id="gameRoot" fx:id="gameRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                      minWidth="-Infinity" prefHeight="623.0" prefWidth="547.0" AnchorPane.bottomAnchor="20.0"
-                      AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0"/>
+                <HBox id="gameRoot" fx:id="gameRoot" layoutY="54.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="507.0"
+                      AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                      AnchorPane.topAnchor="54.0"/>
+                <Button fx:id="back" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" text="Retour"/>
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="623.0" prefWidth="292.0">
@@ -73,6 +75,9 @@
                  </children>
              </GridPane>
                 <Button fx:id="quit" layoutX="199.0" layoutY="584.0" mnemonicParsing="false" text="Quitter le jeu"/>
-         </children></AnchorPane>
+                <Button fx:id="save" disable="true" layoutX="17.0" layoutY="584.0" mnemonicParsing="false"
+                        text="Sauvegarder les scores"/>
+            </children>
+        </AnchorPane>
   </items>
 </SplitPane>

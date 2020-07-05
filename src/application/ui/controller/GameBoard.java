@@ -1,6 +1,7 @@
 package application.ui.controller;
 
 import application.model.Game;
+import application.model.ScoreFile;
 import application.model.entities.BoardParameters;
 import application.model.entities.Checker;
 import application.model.entities.Column;
@@ -30,13 +31,18 @@ public class GameBoard {
     private final List<Label> playersLabel;
     private final List<Label> colorsLabel;
     private final List<Label> scoreLabel;
+    private final List<Player> players;
 
     @FXML
     private HBox gameRoot;
     @FXML
     private Button quit;
     @FXML
+    private Button save;
+    @FXML
     private Label labelCurrent;
+    @FXML
+    private Button back;
 
     @FXML
     private Label labelJ1;
@@ -70,6 +76,7 @@ public class GameBoard {
         playersLabel = new ArrayList<>();
         colorsLabel = new ArrayList<>();
         scoreLabel = new ArrayList<>();
+        players = new ArrayList<>();
 
         radiusChecker = 0;
     }
@@ -91,6 +98,18 @@ public class GameBoard {
         scoreLabel.add(labelScore4);
 
         quit.setOnMouseClicked(e -> System.exit(0));
+        back.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
+        save.setOnMouseClicked(e -> {
+            ScoreFile.getScoreFile().addScores(players);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Succès");
+            alert.setContentText("Scores sauvegardés avec succès !");
+
+            alert.showAndWait();
+
+            save.setDisable(true);
+        });
     }
 
     public void startGame(List<Player> playerList, BoardParameters params) {
@@ -98,6 +117,7 @@ public class GameBoard {
         labelCurrent.setText(game.getCurrentPlayer().getName());
         configPlayers(playerList);
         createBoard(params);
+        players.addAll(playerList);
     }
 
     public void startGame(BoardParameters params) {
@@ -198,9 +218,10 @@ public class GameBoard {
 
         endGame.showAndWait().filter(response -> (response == ButtonType.YES || response == ButtonType.NO))
                 .ifPresent(response -> {
-                    if (response == ButtonType.YES)
+                    if (response == ButtonType.YES) {
+                        save.setDisable(false);
                         resetGame();
-                    else
+                    } else
                         MainFrame.getMainFrame().home();
                 });
     }

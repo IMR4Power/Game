@@ -3,10 +3,17 @@ package application.model.entities;
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
 
-public class Player {
-    private final StringProperty name;
-    private final ObjectProperty<Color> color;
-    private final IntegerProperty currentScore;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class Player implements Serializable {
+    private StringProperty name;
+    private ObjectProperty<Color> color;
+    private IntegerProperty currentScore;
+
+    private static final long serialVersionUID = 1L;
 
     //Constructeur
     public Player(String name, Color color) {
@@ -51,6 +58,18 @@ public class Player {
 
     public void wonAGame() {
         this.currentScore.set(this.currentScore.get() + 1);
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException {
+        name = new SimpleStringProperty(in.readUTF());
+        color = new SimpleObjectProperty<>(Color.valueOf(in.readUTF()));
+        currentScore = new SimpleIntegerProperty(in.readInt());
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeUTF(name.getValue());
+        out.writeUTF(color.getValue().toString());
+        out.writeInt(currentScore.get());
     }
 
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Column {
-    private int height;
-    private List<Checker> checkers;
+    private final int height;
+    private final List<Checker> checkers;
 
     // Constructeur
     public Column() {
