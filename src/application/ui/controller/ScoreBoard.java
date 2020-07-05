@@ -13,12 +13,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
 
+/**
+ * Controller class for the ScoreBoard view
+ */
 public class ScoreBoard {
+	/**
+	 * List of the displayed players
+	 */
 	private final ObservableList<Player> list;
 
 	@FXML
 	private Button back;
 
+	// Table view with its columns to display players scores
 	@FXML
 	private TableView<Player> playerTableView;
 	@FXML
@@ -28,23 +35,32 @@ public class ScoreBoard {
 	@FXML
 	private TableColumn<Player, String> scoreColumn;
 
-	//Constructeur
+	/**
+	 * Creates a new ScoreBoard initializing the list of players with the players in ScoreFile
+	 */
 	public ScoreBoard() {
 		list = FXCollections.observableArrayList(ScoreFile.getScoreFile().getScores());
 	}
 
+	/**
+	 * Called after ui has been initialized.
+	 * Binds the table view to the player list.
+	 * Then binds each column to the value it has to display
+	 */
 	public void initialize() {
+		// Bind back button to go back to welcome menu
 		back.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
 
-		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		colorColumn.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
-		scoreColumn.setCellValueFactory(cellData -> cellData.getValue().getScoreProperty().asString());
+		// Bind each column to a player's value
+		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty()); // Player's name
+		colorColumn.setCellValueFactory(cellData -> cellData.getValue().getColorProperty()); // Player's color
+		scoreColumn.setCellValueFactory(cellData -> cellData.getValue().getScoreProperty().asString()); // Player's score
 
-		nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		colorColumn.setCellFactory(ColorPickerTableCell::new);
-		scoreColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		nameColumn.setCellFactory(TextFieldTableCell.forTableColumn()); // Display it as a string
+		colorColumn.setCellFactory(ColorPickerTableCell::new); // Display it as a color with the custom factory
+		scoreColumn.setCellFactory(TextFieldTableCell.forTableColumn()); // Display it as a string
 
-		playerTableView.setItems(list);
+		playerTableView.setItems(list); // Binds the table view to the players list
 	}
-	
+
 }

@@ -6,10 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-class WelcomeStage extends Scene {
+class WelcomeScene extends Scene {
     private VBox layout;
 
-    public WelcomeStage() {
+    public WelcomeScene() {
         super(new VBox());
 
         iniLayout();
