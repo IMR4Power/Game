@@ -6,15 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-class WelcomeStage extends Scene {
+class WelcomeScene extends Scene {
     private VBox layout;
 
-    public WelcomeStage() {
+    public WelcomeScene() {
         super(new VBox());
 
         iniLayout();
 
-        initBoutons();
+        initButtons();
     }
 
     private void iniLayout() {
@@ -25,7 +25,7 @@ class WelcomeStage extends Scene {
         layout.setPadding(new Insets(10.0));
     }
 
-    private void initBoutons() {
+    private void initButtons() {
         Button newGame = new Button("Nouvelle partie");
         newGame.setOnMouseClicked(e -> MainFrame.getMainFrame().openNewGame());
 

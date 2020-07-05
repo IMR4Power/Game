@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.paint.Color;
 
+/**
+ * Class controller for the newGameDialog view
+ */
 public class NewGameDialog {
     private final BoardParameters parameters;
 
@@ -31,11 +34,20 @@ public class NewGameDialog {
     @FXML
     private Button back;
 
-    // Constructeur
+    /**
+     * Creates a new NewGameDialog with a new boardParameters
+     */
     public NewGameDialog() {
         parameters = new BoardParameters();
     }
 
+    /**
+     * Adds a player in the list.
+     * <p>
+     * Checks if the list isn't full (not more than 4 players).
+     * If the list is full, displays a modal telling the user and disable the addPlayer button. Else add a new user
+     * with name "Nouveau Joueur" and a random color
+     */
     @FXML
     public void addPlayer() {
         if (parameters.getPlayers().size() == 4) {
@@ -54,6 +66,13 @@ public class NewGameDialog {
         }
     }
 
+    /**
+     * Removes a player in the list.
+     * <p>
+     * Checks if the list isn't at minimum (not less than 2 players).
+     * If the list is at minimum, displays a modal telling the user and disable the removePlayer button. Else removes the selected user in the list.
+     * If no user is selected, does nothing
+     */
     @FXML
     public void removePlayer() {
         if (parameters.getPlayers().size() == 2) {
@@ -72,20 +91,32 @@ public class NewGameDialog {
         }
     }
 
+    /**
+     * Called after ui has been initialized.
+     * <p>
+     * Binds the table view to player list of game board parameters and each column to a players data
+     * Binds too the spinner values to rows and columns number of game board parameters
+     * Add a callback on back button
+     */
     public void initialize() {
+        // Binds the data which will be used by each column
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         colorColumn.setCellValueFactory(cellData -> cellData.getValue().getColorProperty());
 
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        colorColumn.setCellFactory(ColorPickerTableCell::new);
+        // Sets how the data are displayed and updated for each column
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn()); // Handles string property
+        colorColumn.setCellFactory(ColorPickerTableCell::new); // Custom class to handle colors in the table
 
-        playerTableView.setItems(parameters.getPlayers());
+        playerTableView.setItems(parameters.getPlayers()); // Set the list of player which will be used by the table view
 
+        // Binds the spinner's values to corresponding attributes of the game board parameters
         parameters.getNbColProperty().bind(nbColumns.valueProperty());
         parameters.getNbRowProperty().bind(nbRows.valueProperty());
 
+        // on click, change the displayed view and start the game
         playBtn.setOnMouseClicked(e -> MainFrame.getMainFrame().startGame(parameters));
 
+        // on click, return to welcome menu
         back.setOnMouseClicked(e -> MainFrame.getMainFrame().home());
     }
 

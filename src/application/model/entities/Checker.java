@@ -2,6 +2,11 @@ package application.model.entities;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Bean class representing a player's checker.
+ * <p>
+ * It only retains the player's color
+ */
 public class Checker {
     private final Color color;
 
